@@ -1,0 +1,25 @@
+I am obviously not going to review 1115 topics:
+- if, if-else
+- loops
+- arrays
+- Strings
+- etc.
+
+I am not going to review the following 3115 topics:
+- the enhanced for loop
+- objects and classes
+- fields and methods
+- public and private
+- instance vs static
+- constructors
+- the "this" keyword
+- inheritance
+- method overriding
+- the "super" keyword
+- the basics of abstract classes and interfaces
+- wrapper classes: Integer, Double, Boolean, etc.
+- ArrayList methods: add (both versions), remove (both versions), set, set, contains, size, isEmpty
+- exceptions: throwing, try-catch
+- basic recursion (involving arithmetic or Strings)
+
+What I am going to review are 3115 topics that may not have been fully covered in 3115.
