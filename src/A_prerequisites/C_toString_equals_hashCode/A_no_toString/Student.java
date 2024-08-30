@@ -1,4 +1,6 @@
-package A_prerequisites.C_toString_equals_hashCode.A_no_toString;/*
+package A_prerequisites.C_toString_equals_hashCode.A_no_toString;
+
+/*
 Every class in Java inherits from the class named Object 
 either directly or indirectly. (The only exception is the 
 Object class itself -- it does not inherit from anything.) 

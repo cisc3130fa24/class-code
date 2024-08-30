@@ -1,13 +1,13 @@
 package A_prerequisites.C_toString_equals_hashCode.A_no_toString;
 
-public class Main {
+public class Main { // application; client of Student class
     public static void main(String[] args) {
         Student s1 = new Student("John Doe", 1234);
         Student s2 = new Student("John Doe", 1234);
 
         /*
         Here, we're using the toString() method of the Object class, which is inherited by the Student class.
-        The toString() method of the Object class just gives us the class name of the actual object
+        The toString() method of the Object class gives us the class name of the actual object
         (here, A_prerequisites.A_toString_equals_hashCode.A_no_toString.Student), then the '@' character,
         and then a hexadecimal number which is the object's hash code.
         A hash code an int associated with an object; it might be the address of the object, but not necessarily.
