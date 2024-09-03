@@ -79,7 +79,8 @@ Here are a few things which you might not yet know about ArrayLists.
    in the order in which they were provided.
    For example:
       List<Integer> list = List.of(7, 3, 5);
-      System.out.println(list); // prints: [7, 3, 5]
+      System.out.println(list);        // [7, 3, 5]
+      System.out.println(list.size()); // 3
 
    Importantly, the List returned by the List.of method is unmodifiable.
    This means that elements cannot be added, removed, replaced, or moved around.
@@ -88,6 +89,15 @@ Here are a few things which you might not yet know about ArrayLists.
    call methods like size and contains.
 
    Note that List.of is another example of a static factory method.
+
+   List.of is a generic method, so it works with all reference types.
+
+   Challenge: what gets printed here?
+        int[] ints = {1, 2, 3};
+        System.out.println(List.of(ints).size());
+   Answer: 1, not 3!
+   Explanation: generics don't play nice with primitive types.
+   Since the method can't return List<int>, it returns a List<int[]>.
 
 5. The ArrayList class has a few constructors.
    One constructor, used above, is a no-arg constructor.
