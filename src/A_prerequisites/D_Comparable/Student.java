@@ -54,8 +54,8 @@ public class Student implements Comparable<Student> {
 
         // another way; hackish:
         // return this.id - other.id;
-        // Consider this case: this.id = -2_000_000_000 and other.id = 1_000_000_000;
-        // we want the method to return a negative int, but it will actually incorrectly return a positive int.
+        // Consider this case: this.id = -2_000_000_000 and other.id = 1_000_000_000  ---
+        // we want the method to return a negative int, but it will incorrectly return a positive int.
 
         // best way:
         return Integer.compare(this.id, other.id);
