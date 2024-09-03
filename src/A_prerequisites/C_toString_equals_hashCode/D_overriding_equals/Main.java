@@ -7,8 +7,8 @@ public class Main {
         Object  s3 = new Student("Jane Doe", 1234);
 
         // Both of the following call the version of the equals method that is written in the Student class.
-        System.out.println(s1.equals(s2));
-        System.out.println(s1.equals(s3));
+        System.out.println(s1.equals(s2)); // true
+        System.out.println(s1.equals(s3)); // false
 
         System.out.println(s1.hashCode());
         System.out.println(s2.hashCode());

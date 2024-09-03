@@ -16,7 +16,10 @@ public class Main {
         System.out.println(Arrays.toString(stringArray));
         System.out.println();
 
-        // Arrays.sort(arr) works only if the elements of arr come from a class that implements Comparable.
+        // Arrays.sort(arr) works only if the elements of arr
+        // come from a class that implements Comparable.
+        // It's not enough for the class to simply have a compareTo method;
+        // the class must explicitly state that it implements Comparable.
 
         // similarly with an ArrayList
         ArrayList<String> stringArrayList = new ArrayList<>();

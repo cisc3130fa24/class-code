@@ -60,7 +60,7 @@ public class Student {
     then HashMap (etc.) will not work correctly.
 
     Question: does the following hashCode method follow the specification?
-    @Overrride
+    @Override
     public int hashCode() {
         return 42;
     }
@@ -70,7 +70,7 @@ public class Student {
     Ideally, however, a good hashCode method should try as
     much as possible to produce unequal hash codes for unequal objects.
     In order to accomplish this, the hash code for an object should
-    depend on its fields are used to determine equality or inequality in the equals method.
+    depend on its fields that are used in the equals method.
     If we don't follow this ideal way,
     HashMap (etc.) will still work correctly (as long as we follow
     the earlier rule) but will work very slowly.

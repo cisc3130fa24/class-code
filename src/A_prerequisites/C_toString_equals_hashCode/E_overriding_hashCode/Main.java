@@ -10,7 +10,8 @@ public class Main {
         System.out.println(s2.hashCode());
         System.out.println(s3.hashCode());
 
-        // They all have equal hash codes, since they are equal according to the equals method,
+        // They all have equal hash codes,
+        // since they are equal according to the equals method,
         // and we overrode the hashCode method correctly.
 
         // If we had not overridden the hashCode method in the Student class,
