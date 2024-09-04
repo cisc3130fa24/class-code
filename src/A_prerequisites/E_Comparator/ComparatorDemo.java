@@ -121,5 +121,18 @@ public class ComparatorDemo {
         // sort students by id in reverse order (highest to lowest)
         Arrays.sort(students, byIdReversed);
         System.out.println("sorted descending by ID: " + Arrays.toString(students));
+
+        /*
+        Comparable vs Comparator:
+        - A Comparable can compare itself to another object, e.g., "e".compareTo("y")
+        - A Comparator can compare two objects, e.g., byLength.compare("e", "y")
+
+        When should you implement Comparable? When you're writing a class whose
+        objects should be comparable with each other.
+
+        When should you implement Comparator? When you want to compare objects of
+        a class that doesn't implement Comparable, or if you want to compare objects
+        in a different way than their compareTo method.
+         */
     }
 }
