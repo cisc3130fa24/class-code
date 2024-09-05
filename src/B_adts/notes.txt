@@ -29,7 +29,7 @@ int is Java’s primitive integer type. int is immutable, so it has no mutators.
 
 List is Java’s list type. List is mutable. List is also an interface, which means that other classes provide the actual implementation of the data type. These classes include ArrayList and LinkedList.
 - creators: ArrayList and LinkedList constructors, List.of
-- producers: Collections.unmodifiableList
+- producers: subList
 - observers: size, get
 - mutators: add, remove, addAll, Collections.sort
 
