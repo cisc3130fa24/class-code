@@ -1,0 +1,69 @@
+Notes from optional MIT readings:
+
+Abstraction: Omitting or hiding low-level details with a simpler, higher-level idea.
+
+Abstract data types are data types that are characterized by their operations instead of by their internal representations.
+The set of operations for a type X, along with their specifications (documentation), fully characterize what we mean by X.
+
+So, for example, when we talk about the List type, what we mean is not a linked list or an array or any other specific data structure for representing a list.
+
+Instead, the List type is a set of opaque values — the possible objects that can have List type — that satisfy the specifications of all the operations of List: get(), size(), etc. The values of an abstract type are opaque in the sense that a client can’t examine the data stored inside them, except as permitted by operations.
+
+The operations of an abstract type are classified as follows:
+- Creators create new objects of the type.
+  A creator may take values of other types as arguments, but not an object of the type being constructed.
+- Producers also create new objects of the type, but require one or more existing objects of the type as input.
+  The concat method of String, for example, is a producer:
+  it takes two strings and produces a new string representing their concatenation.
+- Observers take objects of the abstract type and return objects of a different type.
+  The size method of List, for example, returns an int.
+- Mutators modify objects. The add method of List, for example, mutates a list by adding an element to the end.
+
+Here are some examples of abstract data types, along with some of their operations, grouped by kind.
+
+int is Java’s primitive integer type. int is immutable, so it has no mutators.
+- creators: the numeric literals 0, 1, 2, …
+- producers: arithmetic operators +, -, *, /
+- observers: comparison operators ==, !=, <, >
+- mutators: none (it’s immutable)
+
+List is Java’s list type. List is mutable. List is also an interface, which means that other classes provide the actual implementation of the data type. These classes include ArrayList and LinkedList.
+- creators: ArrayList and LinkedList constructors, List.of
+- producers: Collections.unmodifiableList
+- observers: size, get
+- mutators: add, remove, addAll, Collections.sort
+
+String is Java’s string type. String is immutable.
+- creators: String constructors, valueOf static methods
+- producers: concat, substring, toUpperCase
+- observers: length, charAt
+- mutators: none (it’s immutable)
+
+Invariant: a property of a program that is always true, for every possible runtime state of the program.
+Examples: some objects, such as Strings, are guaranteed to immutable.
+A good ADT should preserve its invariants, that is, provide no way for its invariants to be violated.
+
+If an invariant of an abstract data type is
+ - established by creators and producers;
+ - preserved by mutators, observers, and producers; and
+ - no representation exposure occurs,
+then the invariant is true of all instances of the abstract data type.
+
+Java’s interface is a useful language mechanism for expressing an abstract data type.
+It allows us to separate the specification of an ADT from its concrete implementation.
+The interface is all a client programmer needs to read to understand the ADT.
+The client can’t create inadvertent dependencies on the ADT’s internal representation,
+because instance fields can’t be put in an interface at all.
+Another advantage is that multiple different representations of the abstract data type can coexist in the same program,
+as different classes implementing the interface.
+
+Coding to the interface: writing applications targeted to interfaces, not to specific implementations.
+Makes code more flexible; it's easy to switch to a different representation later.
+
+Example: using List, instead of ArrayList, as variable type. Ensures that we only call List methods, and not methods specific to ArrayList.
+This makes it possible later to easily switch to another implementation of List, such as LinkedList. All we have to do is
+change every new ArrayList<>() to new LinkedList<>(). Since the variable type was List, not ArrayList, the compiler makes sure
+that we only called methods that are available in List, and not any methods that are unique to ArrayList.
+
+If there's a real need to use methods that are specific to ArrayList, then we have no choice but to use ArrayList as the type.
+But such a situation is rare.
