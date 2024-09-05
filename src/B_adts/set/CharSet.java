@@ -29,4 +29,8 @@ public interface CharSet {
      * @return the number of characters in this set
      */
     int size();
+
+    static CharSet create() {
+        return new StringCharSet();
+    }
 }
