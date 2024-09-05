@@ -1,5 +1,6 @@
 package A_prerequisites.E_Comparator;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 
@@ -43,5 +44,19 @@ public class AnonymousClassDemo {
         };
         Arrays.sort(stringArray, byLength); // sorts the array based on the provided Comparator
         System.out.println(Arrays.toString(stringArray)); // [cat, bird, rabbit]
+
+        ArrayList<String> customList = new ArrayList<>() {
+            @Override
+            public String toString() {
+                String s = super.toString(); // includes []
+                s = s.replace("[", "{");
+                s = s.replace("]", "}");
+                return s;
+            }
+        };
+        customList.add("a");
+        customList.add("b");
+        customList.add("c");
+        System.out.println(customList); // {a, b, c}
     }
 }
