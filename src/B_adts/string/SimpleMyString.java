@@ -1,4 +1,4 @@
-package B_adts;
+package B_adts.string;
 
 import java.util.Arrays;
 

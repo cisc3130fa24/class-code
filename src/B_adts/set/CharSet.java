@@ -1,4 +1,4 @@
-package B_adts;
+package B_adts.set;
 
 /**
  * A set of characters, that is, a collection of characters without duplicates.
@@ -24,4 +24,9 @@ public interface CharSet {
      * @return true if contains ch, false otherwise
      */
     boolean contains(char ch);
+
+    /**
+     * @return the number of characters in this set
+     */
+    int size();
 }

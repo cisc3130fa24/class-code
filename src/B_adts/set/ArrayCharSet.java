@@ -1,4 +1,4 @@
-package B_adts;
+package B_adts.set;
 
 public class ArrayCharSet implements CharSet {
     private char[] chars;
@@ -48,6 +48,11 @@ public class ArrayCharSet implements CharSet {
     @Override
     public boolean contains(char ch) {
         return indexOf(ch) >= 0;
+    }
+
+    @Override
+    public int size() {
+        return size;
     }
 
     private int indexOf(char ch) {

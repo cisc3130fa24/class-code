@@ -122,6 +122,10 @@ public class ComparatorDemo {
         Arrays.sort(students, byIdReversed);
         System.out.println("sorted descending by ID: " + Arrays.toString(students));
 
+        // for an ArrayList<Student>, two ways to sort using a Comparator:
+        // - using Collections.sort(list, comparator)
+        // - or using list.sort(comparator)
+
         /*
         Comparable vs Comparator:
         - A Comparable can compare itself to another object, e.g., "e".compareTo("y")

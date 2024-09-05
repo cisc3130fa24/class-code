@@ -1,4 +1,4 @@
-package B_adts;
+package B_adts.set;
 
 public class StringCharSet implements CharSet {
     private String s = "";
@@ -28,5 +28,10 @@ public class StringCharSet implements CharSet {
     @Override
     public boolean contains(char ch) {
         return s.indexOf(ch) >= 0;
+    }
+
+    @Override
+    public int size() {
+        return s.length();
     }
 }
