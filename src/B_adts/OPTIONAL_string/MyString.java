@@ -1,4 +1,4 @@
-package B_adts.string;
+package B_adts.OPTIONAL_string;
 
 /**
  * MyString represents an immutable sequence of characters.
