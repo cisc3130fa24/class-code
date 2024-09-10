@@ -7,6 +7,8 @@ public class PositiveInteger extends Number {
         if (value <= 0) {
             throw new IllegalArgumentException();
         }
+
+        this.value = value;
     }
 
     @Override
@@ -27,5 +29,10 @@ public class PositiveInteger extends Number {
     @Override
     public double doubleValue() {
         return value;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(value);
     }
 }

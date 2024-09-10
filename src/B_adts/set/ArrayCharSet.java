@@ -1,7 +1,7 @@
 package B_adts.set;
 
 public class ArrayCharSet implements CharSet {
-    private char[] chars;
+    private final char[] chars;
     private int size;
 
     /**
@@ -20,7 +20,7 @@ public class ArrayCharSet implements CharSet {
      */
     @Override
     public boolean add(char ch) {
-        if (size == chars.length || contains(ch)) {
+        if (isFull() || contains(ch)) {
             return false;
         } else {
             chars[size] = ch;
@@ -36,10 +36,15 @@ public class ArrayCharSet implements CharSet {
         if (index < 0) {
             return false;
         } else {
+            // one way (very good): move last character to index, works since we don't care about order in a set
+            // chars[index] = chars[size - 1];
+
+            // another way: shift all characters that are after index to the left by one position
             for (int i = index; i < size - 1; i++) {
                 chars[i] = chars[i + 1];
             }
 
+            // these lines are applicable to both approaches:
             size--;
             return true;
         }
@@ -70,5 +75,12 @@ public class ArrayCharSet implements CharSet {
      */
     public int capacity() {
         return chars.length;
+    }
+
+    /**
+     * Determines whether the set is full.
+     */
+    public boolean isFull() {
+        return size == capacity();
     }
 }

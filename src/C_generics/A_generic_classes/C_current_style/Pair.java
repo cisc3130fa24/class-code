@@ -1,117 +1,134 @@
 package C_generics.A_generic_classes.C_current_style;
 
-public class Pair<T> { // Pair is generic class. T is a type parameter
-  private T first, second;
+import java.util.Objects;
 
-  public Pair(T first, T second) {
-    this.first = first;
-    this.second = second;
-  }
+/*
+Pair is a generic class.
 
-  public void setFirst(T first) {
-    this.first = first;
-  }
+T is a type parameter. It is a placeholder for an actual type,
+which will be specified by the client when they create an object of this class.
 
-  public void setSecond(T second) {
-    this.second = second;
-  }
+Within the Pair class, T can be used as the type of instance fields,
+and can be used in constructors and instance methods.
+ */
+public class Pair<T> {
+    private T first, second;
 
-  public T getFirst() {
-    return first;
-  }
-
-  public T getSecond() {
-    return second;
-  }
-
-  @Override
-  public String toString() {
-    return "(" + first + ", " + second + ")";
-  }
-
-  // Suppose p1 is a Pair<String>, and p2 is another pair.
-  // If we say p1.equals(p2), we hope that p2 is also a Pair<String>
-  // But the equals method has no way to guarantee this. 
-  @Override
-  public boolean equals(Object o) {
-    if (o instanceof Pair) {
-      Pair<?> other = (Pair<?>) o;
-      return this.first.equals(other.first) 
-        && this.second.equals(other.second);
-    } else {
-      return false;
+    public Pair(T first, T second) {
+        this.first = first;
+        this.second = second;
     }
-  }
 
-  public static <U> Pair<U> of(U first, U second) {
-    return new Pair<>(first, second);
-  }
-  
-  /** Copies the values from the other pair into this pair. */
-  public void copyFrom(Pair<? extends T> source) {
-    this.first = source.first;
-    this.second = source.second;
-  }
+    public void setFirst(T first) {
+        this.first = first;
+    }
 
-  /** Copies the values from this pair into the other pair. */
-  public void copyTo(Pair<? super T> destination) {
-    destination.first = this.first;
-    destination.second = this.second;
-  }
+    public void setSecond(T second) {
+        this.second = second;
+    }
 
-  // When to use extends, and when to use super? 
-  // Mnemonic: PECS: producer - extends, consumer - super.
+    public T getFirst() {
+        return first;
+    }
 
-  public static void main(String[] args) {
-    
-    // we can make a Pair of any reference type. but not primitive type
-    
-    // for this Pair, the compiler knows that T means Integer
-    // Integer is the type argument here
-    Pair<Integer> integerPair = new Pair<Integer>(89, -90);
-    System.out.println(integerPair); // (89, -90)
-    int first = integerPair.getFirst();
-    integerPair.setFirst(34);
+    public T getSecond() {
+        return second;
+    }
 
-    // won't compile -- 
-    // we cannot use a primitve type inside the angle brackets
-    // Pair<int> intPair = new Pair<>(56, 78);
+    @Override
+    public String toString() {
+        return "(" + first + ", " + second + ")";
+    }
 
-    // for this Pair, the compiler knows that T means Rational
-    Pair<PositiveInteger> positiveIntegerPair = new Pair<>(
-            new PositiveInteger(5), new PositiveInteger(9));
-    System.out.println(positiveIntegerPair);
+    /* We will discuss the other methods later. */
 
-    // no cast needed, since the compiler knows that 
-    // getFirst must return a Rational here
-    PositiveInteger firstPositiveInteger = positiveIntegerPair.getFirst();
+    // Suppose p1 is a Pair<String>, and p2 is another pair.
+    // If we say p1.equals(p2), we hope that p2 is also a Pair<String>
+    // But the equals method has no way to guarantee this.
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Pair) {
+            Pair<?> other = (Pair<?>) o;
+            return this.first.equals(other.first)
+                   && this.second.equals(other.second);
+        } else {
+            return false;
+        }
+    }
 
-    // for this Pair, the compiler knows that T means String
-    Pair<String> stringPair = new Pair<>("hello", "world");
-    System.out.println(stringPair);
+    @Override
+    public int hashCode() {
+        return Objects.hash(first, second);
+    }
 
-    // this will not compile, which is good
-    // stringPair.setFirst(34);
+    public static <U> Pair<U> of(U first, U second) {
+        return new Pair<>(first, second);
+    }
 
-    // no cast needed, since the compiler knows that 
-    // getFirst must return a String here
-    String firstString = stringPair.getFirst();
+    /**
+     * Copies the values from the other pair into this pair.
+     */
+    public void copyFrom(Pair<? extends T> source) {
+        this.first = source.first;
+        this.second = source.second;
+    }
 
-    // a Pair<Number> can contain objects of all classes that inherit from Number
-    Pair<Number> numberPair = new Pair<>(34.7845, new PositiveInteger(23));
-    System.out.println(numberPair);
+    /**
+     * Copies the values from this pair into the other pair.
+     */
+    public void copyTo(Pair<? super T> destination) {
+        destination.first = this.first;
+        destination.second = this.second;
+    }
+
+    // When to use extends, and when to use super?
+    // Mnemonic: PECS: producer - extends, consumer - super.
+
+    public static void main(String[] args) {
+        // We can create a Pair of any reference type. but not primitive type
+
+        // String is the type argument here. For this Pair object, T = String
+        Pair<String> stringPair = new Pair<>("a", "b");
+        System.out.println(stringPair);
+
+        // this will not compile, which is good
+        // stringPair.setFirst(34);
+
+        // no cast needed, since the compiler knows that
+        // getFirst must return a String for this particular Pair
+        String firstString = stringPair.getFirst();
+
+        // Integer is the type argument here. For this Pair object, T = Integer
+        Pair<Integer> integerPair = new Pair<>(89, -90); // autoboxing
+        System.out.println(integerPair); // (89, -90)
+        int first = integerPair.getFirst();  // auto-unboxing
+        integerPair.setFirst(34);
+
+        // won't compile --
+        // we cannot use a primitive as a type argument
+        // Pair<int> intPair = new Pair<>(56, 78);
+
+        Pair<PositiveInteger> positiveIntegerPair = new Pair<>(
+                new PositiveInteger(5), new PositiveInteger(9));
+        System.out.println(positiveIntegerPair);
+
+        PositiveInteger firstPositiveInteger = positiveIntegerPair.getFirst();
+
+        // a Pair<Number> can contain objects of all classes that inherit from Number
+        Pair<Number> numberPair = new Pair<>(34.7845, new PositiveInteger(23));
+        System.out.println(numberPair);
 
 
-    // it is possible to say this, but it's usually not a good idea
-    // Pair pair = new Pair(4, 34);
+        // it is possible to say this, but it's usually not a good idea
+        // Pair pair = new Pair(4, 34);
 
-    Pair<String> anotherStringPair = Pair.of("hello", "world");
-    System.out.println(anotherStringPair);
-    
-    numberPair.copyFrom(positiveIntegerPair); // here, T = Number
-    System.out.println(numberPair);
+        Pair<String> anotherStringPair = Pair.of("hello", "world");
+        System.out.println(anotherStringPair);
 
-    integerPair.copyTo(numberPair); // here, T = Integer
-    System.out.println(numberPair);
-  }
+        numberPair.copyFrom(positiveIntegerPair); // here, T = Number
+        System.out.println(numberPair);
+
+        integerPair.copyTo(numberPair); // here, T = Integer
+        System.out.println(numberPair);
+    }
 }

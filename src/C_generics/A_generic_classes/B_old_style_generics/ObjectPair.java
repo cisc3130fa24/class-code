@@ -8,46 +8,49 @@ which was released in 2004.
  */
 
 public class ObjectPair {
-  private Object first, second;
+    private Object first, second;
 
-  public ObjectPair(Object first, Object second) {
-    this.first = first;
-    this.second = second;
-  }
+    public ObjectPair(Object first, Object second) {
+        this.first = first;
+        this.second = second;
+    }
 
-  public Object getFirst() {
-    return first;
-  }
+    public Object getFirst() {
+        return first;
+    }
 
-  public Object getSecond() {
-    return second;
-  }
+    public Object getSecond() {
+        return second;
+    }
 
-  public void setFirst(Object first) {
-    this.first = first;
-  }
+    public void setFirst(Object first) {
+        this.first = first;
+    }
 
-  public void setSecond(Object second) {
-    this.second = second;
-  }
+    public void setSecond(Object second) {
+        this.second = second;
+    }
 
-  @Override
-  public String toString() {
-    return "(" + first + ", " + second + ")";
-  }
+    @Override
+    public String toString() {
+        return "(" + first + ", " + second + ")";
+    }
 
-  public static void main(String[] args) {
-    ObjectPair integerPair = new ObjectPair(45, 33); // works
+    public static void main(String[] args) {
+        ObjectPair integerPair = new ObjectPair(45, 33); // works
 
-    ObjectPair stringPair = new ObjectPair("hello", "world"); // works
+        ObjectPair stringPair = new ObjectPair("a", "b"); // works
 
-    String f = (String) stringPair.getFirst(); // cast required!
+      // so far, so good.
+      // but there are issues with this approach to writing generic classes
 
-    // compiler lets this through, but we want to prevent this!
-    stringPair.setFirst(33); 
+        String f = (String) stringPair.getFirst(); // cast required!
 
-    // compiler will allow, but this line will generate a 
-    // ClassCastExceptionwhen the program runs
-    f = (String) stringPair.getFirst(); 
-  }
+        // compiler lets this through, but we want to prevent this!
+        stringPair.setFirst(33);
+
+        // compiler will allow, but this line will generate a
+        // ClassCastExceptionwhen the program runs
+        f = (String) stringPair.getFirst();
+    }
 }

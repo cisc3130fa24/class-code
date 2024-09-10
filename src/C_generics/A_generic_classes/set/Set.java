@@ -31,6 +31,6 @@ public interface Set<E> {
     int size();
 
     static <F> Set<F> create() {
-
+        return null;
     }
 }
