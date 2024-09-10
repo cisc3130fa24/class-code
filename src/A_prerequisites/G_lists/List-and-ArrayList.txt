@@ -12,7 +12,7 @@ right-hand side, so we can just say:
 You should also know that the element type (which we place
 inside the angle brackets) must be a reference type. That is,
 it cannot be any of the eight primitive types, such as int,
-double, boolean, or char. If we want a list of intetgers,
+double, boolean, or char. If we want a list of integers,
 for example, we have to use the Integer wrapper type, as in:
   ArrayList<Integer> list = new ArrayList<>();
 
@@ -32,7 +32,8 @@ Here are a few things which you might not yet know about ArrayLists.
 
 1. The ArrayList class inherits from the List<E> interface.
    The List interface specifies what it means to be a list.
-   It specifies methods such as add(int index, E element),
+   Part of being a list means that the elements have indexes.
+   The List interface specifies methods such as add(int index, E element),
    remove(int index), get(int index), and indexOf(Object o).
    In the List interface, these methods are abstract.
    There are a few implementations of the List interface,
