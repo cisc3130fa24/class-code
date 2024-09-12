@@ -1,16 +1,9 @@
-package C_generics.A_generic_classes.C_current_style;
+package C_generics.C_wildcards;
+
+import C_generics.A_generic_classes.C_current_style.PositiveInteger;
 
 import java.util.Objects;
 
-/*
-Pair is a generic class.
-
-T is a type parameter. It is a placeholder for an actual type,
-which will be specified by the client when they create an object of this class.
-
-Within the Pair class, T can be used as the type of instance fields,
-and can be used in constructors and instance methods.
- */
 public class Pair<T> {
     private T first, second;
 
@@ -39,6 +32,50 @@ public class Pair<T> {
     public String toString() {
         return "(" + first + ", " + second + ")";
     }
+
+    /* We will discuss the other methods later. */
+
+    // Suppose p1 is a Pair<String>, and p2 is another pair.
+    // If we say p1.equals(p2), we hope that p2 is also a Pair<String>
+    // But the equals method has no way to guarantee this.
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Pair) {
+            Pair<?> other = (Pair<?>) o;
+            return this.first.equals(other.first)
+                   && this.second.equals(other.second);
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(first, second);
+    }
+
+    public static <U> Pair<U> of(U first, U second) {
+        return new Pair<>(first, second);
+    }
+
+    /**
+     * Copies the values from the other pair into this pair.
+     */
+    public void copyFrom(Pair<? extends T> source) {
+        this.first = source.first;
+        this.second = source.second;
+    }
+
+    /**
+     * Copies the values from this pair into the other pair.
+     */
+    public void copyTo(Pair<? super T> destination) {
+        destination.first = this.first;
+        destination.second = this.second;
+    }
+
+    // When to use extends, and when to use super?
+    // Mnemonic: PECS: producer - extends, consumer - super.
 
     public static void main(String[] args) {
         // We can create a Pair of any reference type. but not primitive type
@@ -76,5 +113,16 @@ public class Pair<T> {
 
         // it is possible to say this, but it's usually not a good idea
         // Pair pair = new Pair(4, 34);
+
+
+
+        Pair<String> anotherStringPair = Pair.of("hello", "world");
+        System.out.println(anotherStringPair);
+
+        numberPair.copyFrom(positiveIntegerPair); // here, T = Number
+        System.out.println(numberPair);
+
+        integerPair.copyTo(numberPair); // here, T = Integer
+        System.out.println(numberPair);
     }
 }

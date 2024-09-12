@@ -1,4 +1,4 @@
-package C_generics.A_generic_classes.set;
+package C_generics.A_generic_classes.C_current_style.set;
 
 import java.util.Objects;
 

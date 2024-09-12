@@ -1,4 +1,4 @@
-package C_generics.A_generic_classes.set;
+package C_generics.A_generic_classes.C_current_style.set;
 
 /**
  * A set, that is, a collection of elements without duplicates.
