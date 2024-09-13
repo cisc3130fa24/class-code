@@ -1,4 +1,4 @@
-package C_generics.A_generic_classes.C_current_style.set;
+package C_generics.A_generic_classes.D_variations.set;
 
 import java.util.Objects;
 
@@ -52,6 +52,13 @@ public class ArraySet<E> implements Set<E> {
     private int indexOf(Object o) {
         for (int i = 0; i < size; i++) {
             if (Objects.equals(elements[i], o)) {
+                // better than elements[i].equals(o),
+                // doesn't throw a NullPointerException if elements[i] is null.
+                // Objects.equals(a, b):
+                // - if a and b are both null, returns true
+                // - if a is null and b is not null, returns false
+                // - if a is not null, returns result of a.equals(b)
+
                 return i;
             }
         }

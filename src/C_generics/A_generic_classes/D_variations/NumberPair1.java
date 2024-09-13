@@ -4,8 +4,8 @@ import C_generics.A_generic_classes.C_current_style.PositiveInteger;
 
 /*
 If we want a Pair class that will only allow us to create
-Pair<Number>, Pair<Integer>, Pair<PositiveInteger>, etc.,
-but not other types of pairs, such as Pair<String>,
+a pair of Number, a pair of Integer, a pair of PositiveInteger, etc.,
+but not other types of pairs, such as a pair of String,
 this is one way to do it.
 
 Note that this class

@@ -41,8 +41,6 @@ public class Pair<T> {
     }
 
     public static void main(String[] args) {
-        // We can create a Pair of any reference type. but not primitive type
-
         // String is the type argument here. For this Pair object, T = String
         Pair<String> stringPair = new Pair<>("a", "b");
         System.out.println(stringPair);

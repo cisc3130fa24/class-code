@@ -163,6 +163,9 @@ public class Wildcards {
         addRandomPositiveIntegerAtHead(list);
     }
 
+    // We cannot pass to this method a List<String>,
+    // as List<String> is not considered to be a subtype of List<Object>,
+    // even though String is a subtype of Object.
     public static void printRandomObject(List<Object> list) {
         Random generator = new Random();
         int index = generator.nextInt(list.size());

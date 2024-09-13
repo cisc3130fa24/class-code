@@ -30,7 +30,7 @@ public class PairUsingArray<T> {
     }
 
     public static void main(String[] args) {
-        PairUsingArray<String> stringPair = new PairUsingArray<>("hello", "world");
+        PairUsingArray<String> stringPair = new PairUsingArray<>("a", "b");
         System.out.println(stringPair);
     }
 }

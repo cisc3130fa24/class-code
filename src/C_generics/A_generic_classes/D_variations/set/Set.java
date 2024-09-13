@@ -1,4 +1,4 @@
-package C_generics.A_generic_classes.C_current_style.set;
+package C_generics.A_generic_classes.D_variations.set;
 
 /**
  * A set, that is, a collection of elements without duplicates.
@@ -30,7 +30,7 @@ public interface Set<E> {
      */
     int size();
 
-    static <F> Set<F> create() {
-        return null;
+    static <E> Set<E> create() {
+        return new ArraySet<>(10);
     }
 }

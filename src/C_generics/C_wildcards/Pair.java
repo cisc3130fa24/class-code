@@ -33,8 +33,6 @@ public class Pair<T> {
         return "(" + first + ", " + second + ")";
     }
 
-    /* We will discuss the other methods later. */
-
     // Suppose p1 is a Pair<String>, and p2 is another pair.
     // If we say p1.equals(p2), we hope that p2 is also a Pair<String>
     // But the equals method has no way to guarantee this.
@@ -52,10 +50,6 @@ public class Pair<T> {
     @Override
     public int hashCode() {
         return Objects.hash(first, second);
-    }
-
-    public static <U> Pair<U> of(U first, U second) {
-        return new Pair<>(first, second);
     }
 
     /**
@@ -78,46 +72,13 @@ public class Pair<T> {
     // Mnemonic: PECS: producer - extends, consumer - super.
 
     public static void main(String[] args) {
-        // We can create a Pair of any reference type. but not primitive type
-
-        // String is the type argument here. For this Pair object, T = String
-        Pair<String> stringPair = new Pair<>("a", "b");
-        System.out.println(stringPair);
-
-        // this will not compile, which is good
-        // stringPair.setFirst(34);
-
-        // no cast needed, since the compiler knows that
-        // getFirst must return a String for this particular Pair
-        String firstString = stringPair.getFirst();
-
         // Integer is the type argument here. For this Pair object, T = Integer
         Pair<Integer> integerPair = new Pair<>(89, -90); // autoboxing
-        System.out.println(integerPair); // (89, -90)
-        int first = integerPair.getFirst();  // auto-unboxing
-        integerPair.setFirst(34);
-
-        // won't compile --
-        // we cannot use a primitive as a type argument
-        // Pair<int> intPair = new Pair<>(56, 78);
 
         Pair<PositiveInteger> positiveIntegerPair = new Pair<>(
                 new PositiveInteger(5), new PositiveInteger(9));
-        System.out.println(positiveIntegerPair);
 
-        PositiveInteger firstPositiveInteger = positiveIntegerPair.getFirst();
-
-        // a Pair<Number> can contain objects of all classes that inherit from Number
         Pair<Number> numberPair = new Pair<>(34.7845, new PositiveInteger(23));
-        System.out.println(numberPair);
-
-        // it is possible to say this, but it's usually not a good idea
-        // Pair pair = new Pair(4, 34);
-
-
-
-        Pair<String> anotherStringPair = Pair.of("hello", "world");
-        System.out.println(anotherStringPair);
 
         numberPair.copyFrom(positiveIntegerPair); // here, T = Number
         System.out.println(numberPair);
