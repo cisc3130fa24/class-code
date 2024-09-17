@@ -157,10 +157,10 @@ public class Wildcards {
         System.out.println(sum(PositiveIntegerList));
 
         // method header:
-        // public static void addRandomPositiveIntegerAtHead(List<? super PositiveInteger> list)
+        // public static void addRandomIntegerAtHead(List<? super Integer> list)
         ArrayList<Object> list = new ArrayList<>();
-        list.add(new PositiveInteger(1));
-        addRandomPositiveIntegerAtHead(list);
+        list.add(5);
+        addRandomIntegerAtHead(list);
     }
 
     // We cannot pass to this method a List<String>,
@@ -225,11 +225,11 @@ public class Wildcards {
         // ...
     }
 
-    // we can pass to this method an ArrayList<PositiveInteger>, or an ArrayList<Number>,
-    // or an ArrayList<Object>, but not an ArrayList<Integer> or ArrayList<String>.
-    public static void addRandomPositiveIntegerAtHead(List<? super PositiveInteger> list) {
+    // we can pass to this method List<Integer>, or a List<Number>,
+    // or List<Object>, but not a List<String>.
+    public static void addRandomIntegerAtHead(List<? super Integer> list) {
         Random generator = new Random();
-        PositiveInteger r = new PositiveInteger(generator.nextInt(1, Integer.MAX_VALUE));
+        int r = generator.nextInt();
         list.add(0, r);
     }
 }
