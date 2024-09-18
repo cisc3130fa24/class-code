@@ -20,7 +20,7 @@ public class CollectionDemo {
  
         printFirstAndLast(list);
         printFirstAndLast(deque);
-        // printFirstAndLast(queue); // doesn't compile
+        // printFirstAndLast(queue); // doesn't compile, since Queue isn't a SequencedCollection
     }
  
     public static <E> void printElements(Collection<E> collection) {
