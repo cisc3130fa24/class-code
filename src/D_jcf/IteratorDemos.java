@@ -83,7 +83,6 @@ public class IteratorDemos {
         }
         System.out.println();
 
-
         // using an iterator: one style - using a for loop
         for (Iterator<E> it = collection.iterator(); it.hasNext(); ) {
             System.out.print(it.next() + " ");
@@ -100,11 +99,15 @@ public class IteratorDemos {
 
     /*
     - The List interface has two primary implementations: ArrayList and LinkedList.
-    - These two classes differ considerably in their internal details.
-    - The running time of the get(int index) method is very fast for an ArrayList,
-      but slow for a LinkedList.
+      These two classes differ considerably in their internal details.
+    - The running time of the get(int index) method is very fast for an ArrayList:
+      the number of steps performed internally is a small constant -- it doesn't
+      depend on the size of the list.
+    - By contrast, the running time of the get(int index) method is slow for a LinkedList:
+      the number of steps performed internally is based on the size of the list.
+      (This will be discussed further in a few weeks hence.)
     - Thus we want to avoid calling the get method repeatedly in a loop when dealing
-      with a LinkedList, or with an unknown kind of List that might be a LinkedList.
+      with a LinkedList or with an unknown kind of List that might be a LinkedList.
     - An Iterator, or a ListIterator, allows for the efficient retrieval of successive
       elements of a List, whether an ArrayList or a LinkedList.
     */
@@ -134,6 +137,10 @@ public class IteratorDemos {
             System.out.print(iterator.next() + " ");
         }
         System.out.println();
+
+        // Using an iterator with an ArrayList is technically a bit slower than
+        // using a for loop with indexes. But when you have a List and don't know
+        // what kind of list it is, it's best to use an iterator.
     }
 
     public static <E> void printListBackwards(List<E> list) {
@@ -157,6 +164,11 @@ public class IteratorDemos {
             System.out.print(listIterator.previous() + " ");
         }
         System.out.println();
+
+        // In Java 21+, we can use the reversed() method and an enhanced for loop:
+        for (E element : list.reversed()) {
+            System.out.print(element + " ");
+        }
     }
 
     public static <E> void removeEveryOtherElement(Collection<E> collection) {
@@ -166,7 +178,7 @@ public class IteratorDemos {
             iterator.next();          // Retrieve an element.
             iterator.remove();        // Remove the most recently retrieved element.
             if (iterator.hasNext()) { // If there is at least one additional element,
-                iterator.next();      // retrieve the element but ignore it.
+                iterator.next();      // retrieve an element but don't remove it.
             }
         }
     }

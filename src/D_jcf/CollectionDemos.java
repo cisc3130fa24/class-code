@@ -2,7 +2,7 @@ package D_jcf;
  
 import java.util.*;
  
-public class CollectionDemo {
+public class CollectionDemos {
     public static void main(String[] args) {
         List<String> list = new ArrayList<>(List.of("a", "b", "c"));
         printElements(list);

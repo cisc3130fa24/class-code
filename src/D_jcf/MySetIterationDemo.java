@@ -1,8 +1,8 @@
 package D_jcf;
 
-public class SetDemo {
+public class MySetIterationDemo {
     public static void main(String[] args) {
-        Set<String> set = new ArraySet<>(10);
+        MySet<String> set = new ArrayMySet<>(10);
         set.add("a");
         set.add("b");
         set.add("c");

@@ -3,7 +3,7 @@ package D_jcf;
 /**
  * A set, that is, a collection of elements without duplicates.
  */
-public interface Set<E> extends Iterable<E> {
+public interface MySet<E> extends Iterable<E> {
     /**
      * Attempts to add s to this set. Returns false if this set already contains e.
      * @param e the object to add
@@ -30,8 +30,8 @@ public interface Set<E> extends Iterable<E> {
      */
     int size();
 
-    static <E> Set<E> create() {
-        return new ArraySet<>(10);
+    static <E> MySet<E> create() {
+        return new ArrayMySet<>(10);
     }
 }
 

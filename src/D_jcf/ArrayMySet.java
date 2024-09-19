@@ -4,12 +4,12 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
-public class ArraySet<E> implements Set<E> {
+public class ArrayMySet<E> implements MySet<E> {
     private final E[] elements;
     private int size;
 
     @SuppressWarnings("unchecked")
-    public ArraySet(int capacity) {
+    public ArrayMySet(int capacity) {
         elements = (E[]) new Object[capacity];
         size = 0;
     }
@@ -70,6 +70,7 @@ public class ArraySet<E> implements Set<E> {
         return new ArraySetIterator();
     }
 
+    // A non-static inner class. It can access all fields and methods of the outer class.
     private class ArraySetIterator implements Iterator<E> {
         private int index;
 
