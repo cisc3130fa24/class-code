@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
+// an example of a class with a custom iterator
 public class ArrayMySet<E> implements MySet<E> {
     private final E[] elements;
     private int size;
