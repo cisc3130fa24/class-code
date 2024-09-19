@@ -71,7 +71,8 @@ public class ArrayMySet<E> implements MySet<E> {
         return new ArraySetIterator();
     }
 
-    // A non-static inner class. It can access all fields and methods of the outer class.
+    // A non-static inner class.
+    // It can access all fields and methods of the outer class.
     private class ArraySetIterator implements Iterator<E> {
         private int index;
 

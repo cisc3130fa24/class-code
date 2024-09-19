@@ -54,11 +54,11 @@ public class IteratorDemos {
         Collection<Integer> collection2 = Set.of(11, 22, 33, 44);
         printCollection(collection2);
 
-        List<String> list1 = new ArrayList<>(List.of("hello", "world", "good", "morning"));
+        List<String> list1 = new LinkedList<>(List.of("hello", "world", "good", "morning"));
         printList(list1);
         printListBackwards(list1);
 
-        List<Integer> list2 = new LinkedList<>(List.of(11, 22, 33, 44, 56));
+        List<Integer> list2 = new ArrayList<>(List.of(11, 22, 33, 44, 56));
         printList(list2);
         printListBackwards(list2);
 
@@ -96,6 +96,43 @@ public class IteratorDemos {
         }
         System.out.println();
     }
+
+    public static void removeEvenElements(Collection<Integer> collection) {
+        // for (Integer element : collection) {
+        //     if (element % 2 == 0) {
+        //         collection.remove(element);
+        //     }
+        // }
+        // Does not work - we get a ConcurrentModificationException,
+        // which occurs when we use a collection's method to modify the size of
+        // the collection while we are iterating over that collection.
+        // Even though we don't see the iterator here, it exists under the hood.
+
+
+        for (Iterator<Integer> iterator = collection.iterator(); iterator.hasNext(); ) {
+            int element = iterator.next();
+            if (element % 2 == 0) {
+                iterator.remove(); // calling Iterator's remove method, not Collection's, so no ConcurrentModificationException
+            }
+        }
+
+        // near the end of the course, we will see that we can simply say:
+        // collection.removeIf(element -> element % 2 == 0);
+    }
+
+    public static <E> void removeEveryOtherElement(Collection<E> collection) {
+        Iterator<E> iterator = collection.iterator();
+
+        while (iterator.hasNext()) {
+            iterator.next();          // Retrieve an element.
+            iterator.remove();        // Remove the most recently retrieved element.
+            if (iterator.hasNext()) { // If there is at least one additional element,
+                iterator.next();      // retrieve an element but don't remove it.
+            }
+        }
+    }
+
+    /* The rest of this file is optional. */
 
     /*
     - The List interface has two primary implementations: ArrayList and LinkedList.
@@ -169,41 +206,6 @@ public class IteratorDemos {
         for (E element : list.reversed()) {
             System.out.print(element + " ");
         }
-    }
-
-    public static <E> void removeEveryOtherElement(Collection<E> collection) {
-        Iterator<E> iterator = collection.iterator();
-
-        while (iterator.hasNext()) {
-            iterator.next();          // Retrieve an element.
-            iterator.remove();        // Remove the most recently retrieved element.
-            if (iterator.hasNext()) { // If there is at least one additional element,
-                iterator.next();      // retrieve an element but don't remove it.
-            }
-        }
-    }
-
-    public static void removeEvenElements(Collection<Integer> collection) {
-        // for (Integer element : collection) {
-        //     if (element % 2 == 0) {
-        //         collection.remove(element);
-        //     }
-        // }
-        // Does not work - we get a ConcurrentModificationException,
-        // which occurs when we use a collection's method to modify the size of
-        // the collection while we are iterating over that collection.
-        // Even though we don't see the iterator here, it exists under the hood.
-
-
-        for (Iterator<Integer> iterator = collection.iterator(); iterator.hasNext(); ) {
-            int element = iterator.next();
-            if (element % 2 == 0) {
-                iterator.remove(); // calling Iterator's remove method, not Collection's
-            }
-        }
-
-        // near the end of the course, we will see that we can simply say:
-        // collection.removeIf(element -> element % 2 == 0);
     }
 
     public static void momentum(List<Integer> list) {

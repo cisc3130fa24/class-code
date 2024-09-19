@@ -1,5 +1,7 @@
 package D_jcf;
 
+/* This file is optional. */
+
 import java.util.AbstractList;
 import java.util.Iterator;
 import java.util.List;
