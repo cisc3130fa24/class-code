@@ -1,12 +1,6 @@
 package D_jcf;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.ListIterator;
-import java.util.Set;
+import java.util.*;
 
 /*
 The enhanced for loop (aka the for-each loop)
@@ -120,12 +114,13 @@ public class IteratorDemos {
         // collection.removeIf(element -> element % 2 == 0);
     }
 
-    public static <E> void removeEveryOtherElement(Collection<E> collection) {
+    public static <E> void removeEveryOtherElement(SequencedCollection<E> collection) {
         Iterator<E> iterator = collection.iterator();
 
         while (iterator.hasNext()) {
             iterator.next();          // Retrieve an element.
             iterator.remove();        // Remove the most recently retrieved element.
+
             if (iterator.hasNext()) { // If there is at least one additional element,
                 iterator.next();      // retrieve an element but don't remove it.
             }

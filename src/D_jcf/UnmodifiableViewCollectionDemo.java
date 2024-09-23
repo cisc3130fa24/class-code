@@ -50,6 +50,7 @@ class SecurityEventLog {
 
         // return new ArrayList<>(events); // good, but can be costly to copy all the elements to the new list.
 
-        return Collections.unmodifiableList(events); // best approach: elements aren't copied, but exception is thrown if client tries to modify.
+        return Collections.unmodifiableList(events); // best approach: don't copy elements,
+        // but return an unmodifiable wrapper that throws an exception if the client tries to modify.
     }
 }
