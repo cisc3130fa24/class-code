@@ -36,6 +36,8 @@ public class UnmodifiableViewCollectionDemo {
 
 class SecurityEventLog {
     private List<String> events;
+    // once something gets added to this list,
+    // it should be impossible to remove it
 
     public SecurityEventLog() {
         events = new ArrayList<>();
@@ -46,13 +48,24 @@ class SecurityEventLog {
     }
 
     public List<String> getEvents() {
-        // return events; // bad; client can remove elements from the list
+        // return events;
+        // bad; client can remove elements from the list
 
-        // return new ArrayList<>(events); // good, but can be costly to copy all the elements to the new list.
+        // List<String> copy = new ArrayList<>();
+        // for (String element : events) {
+        //     copy.add(element);
+        // }
+        // return copy;
 
-        // return List.copyOf(events);     // also good, but same issue as before.
+        // return new ArrayList<>(events); // equivalent to the above 5 lines
+        // good, but can be costly to copy all the elements to the new list.
 
-        return Collections.unmodifiableList(events); // this is the best approach: don't copy elements,
-        // but return an unmodifiable wrapper that throws an exception if the client tries to modify.
+        // return List.copyOf(events);
+        // also good, but same issue as before.
+
+        return Collections.unmodifiableList(events);
+        // this is the best approach: don't copy elements,
+        // but return an unmodifiable wrapper that throws
+        // an exception if the client tries to modify.
     }
 }
