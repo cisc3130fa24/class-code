@@ -242,7 +242,7 @@ public class ArrayStringBoundedListTest {
 
         System.out.println(list.indexOf("a"));  // 0
         System.out.println(list.indexOf("b"));  // 1
-        System.out.println(list.indexOf("c"));  // 5
+        System.out.println(list.indexOf(new String("c")));  // 5
         System.out.println(list.indexOf("d"));  // 7
         System.out.println(list.indexOf("e"));  // -1
         System.out.println(list.indexOf(null)); // 2
@@ -271,7 +271,7 @@ public class ArrayStringBoundedListTest {
 
         System.out.println(list.lastIndexOf("a"));  // 0
         System.out.println(list.lastIndexOf("b"));  // 6
-        System.out.println(list.lastIndexOf("c"));  // 5
+        System.out.println(list.lastIndexOf(new String("c")));  // 5
         System.out.println(list.lastIndexOf("d"));  // 7
         System.out.println(list.lastIndexOf("e"));  // -1
         System.out.println(list.lastIndexOf(null)); // 3
