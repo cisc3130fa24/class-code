@@ -574,7 +574,7 @@ public class ArrayStringBoundedListTest {
             System.out.println("At most two fields allowed!");
         }
 
-        boolean hasStringArray = false;
+        boolean hasStringArray = false, hasInt = false;
 
         for (Field field : fields) {
             if (!Modifier.isPrivate(field.getModifiers())) {
@@ -583,11 +583,17 @@ public class ArrayStringBoundedListTest {
 
             if (field.getType() == String[].class) {
                 hasStringArray = true;
+            } else if (field.getType() == int.class) {
+                hasInt = true;
             }
         }
 
         if (!hasStringArray) {
             System.out.println("One of the fields must be an array of Strings (that is, a String[])!");
+        }
+
+        if (!hasInt) {
+            System.out.println("One of the fields must be an int!");
         }
 
         System.out.println();
