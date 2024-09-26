@@ -40,17 +40,17 @@ public class QuickSort {
         int pivotIndex = lowIndex + count;
         swap(arr, pivotIndex, lowIndex);
 
-        // now rearrange elements around the pivot
-        int i = lowIndex, j = highIndex;
-        while (i < pivotIndex && j > pivotIndex) {
-            if (arr[i] < pivot) {
-                i++;
-            } else if (arr[j] >= pivot) {
-                j--;
+        // now rearrange elements around the pivot using a two-pointer approach
+        int leftPointer = lowIndex, rightPointer = highIndex;
+        while (leftPointer < pivotIndex && rightPointer > pivotIndex) {
+            if (arr[leftPointer] < pivot) {
+                leftPointer++;
+            } else if (arr[rightPointer] >= pivot) {
+                rightPointer--;
             } else {
-                swap(arr, i, j);
-                i++;
-                j--;
+                swap(arr, leftPointer, rightPointer);
+                leftPointer++;
+                rightPointer--;
             }
         }
 
