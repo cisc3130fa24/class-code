@@ -1,6 +1,10 @@
 package F_search_sort;
 
 public class QuickSort {
+    public static void main(String[] args) {
+        int[] arr = {2, 3, 2, 5, 6, 1, -2, 3, 14, 12};
+    }
+
     public static void quickSort(int[] arr) {
         quickSort(arr, 0, arr.length - 1);
     }
@@ -14,7 +18,7 @@ public class QuickSort {
     }
 
     // Chooses a pivot element and partitions arr (from lowIndex through highIndex)
-    // around the pivot:all elements less than the pivot will be placed to the left of the pivot,
+    // around the pivot: all elements less than the pivot will be placed to the left of the pivot,
     // and all elements greater than or equal to the pivot will be placed to the right of the pivot.
     // There are many ways to accomplish this; here we are using
     // a relatively easy approach, though not the most efficient one.
