@@ -5,39 +5,39 @@ public class QuickSort {
         quickSort(arr, 0, arr.length - 1);
     }
 
-    private static void quickSort(int[] arr, int first, int last) {
-        if (last > first) {
-            int pivotIndex = partition(arr, first, last);
-            quickSort(arr, first, pivotIndex - 1);
-            quickSort(arr, pivotIndex + 1, last);
+    private static void quickSort(int[] arr, int lowIndex, int highIndex) {
+        if (highIndex > lowIndex) {
+            int pivotIndex = partition(arr, lowIndex, highIndex);
+            quickSort(arr, lowIndex, pivotIndex - 1);
+            quickSort(arr, pivotIndex + 1, highIndex);
         }
     }
 
-    // Chooses a pivot element and partitions arr around that element:
-    // all elements less than the pivot will be placed to the left of the pivot,
+    // Chooses a pivot element and partitions arr (from lowIndex through highIndex)
+    // around the pivot:all elements less than the pivot will be placed to the left of the pivot,
     // and all elements greater than or equal to the pivot will be placed to the right of the pivot.
     // There are many ways to accomplish this; here we are using
     // a relatively easy approach, though not the most efficient one.
     // The method returns the index of the pivot element.
-    public static int partition(int[] arr, int low, int high) {
+    public static int partition(int[] arr, int lowIndex, int highIndex) {
         // choose the pivot element (we're choosing the first element here,
         // but other approaches choose the last, the middle, or even a random element)
-        int pivot = arr[low];
+        int pivot = arr[lowIndex];
 
         // count how many elements are less than the pivot
         int count = 0;
-        for (int i = low + 1; i <= high; i++) {
+        for (int i = lowIndex + 1; i <= highIndex; i++) {
             if (arr[i] < pivot) {
                 count++;
             }
         }
 
         // move pivot to its proper place
-        int pivotIndex = low + count;
-        swap(arr, pivotIndex, low);
+        int pivotIndex = lowIndex + count;
+        swap(arr, pivotIndex, lowIndex);
 
         // now rearrange elements around the pivot
-        int i = low, j = high;
+        int i = lowIndex, j = highIndex;
         while (i < pivotIndex && j > pivotIndex) {
             if (arr[i] < pivot) {
                 i++;
