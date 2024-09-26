@@ -12,7 +12,7 @@ int halfDistance = distance / 2;      // 3
 int middleIndex = lowIndex + halfDistance;
  */
  
-public class Search {
+public class BinarySearch {
     public static void main(String[] args) {
         int[] arr = {
                 11, 18, 29, 37, 42, 49, 51, 63,
