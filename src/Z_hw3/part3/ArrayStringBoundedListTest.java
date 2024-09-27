@@ -33,17 +33,17 @@ public class ArrayStringBoundedListTest {
     private static void testConstructor() {
         System.out.println("Testing constructor:");
 
-        Z_hw3.part2.StringBoundedList list1 = new Z_hw3.part2.ArrayStringBoundedList(10);
+        StringBoundedList list1 = new ArrayStringBoundedList(10);
         System.out.println(list1.size());     // 0
         System.out.println(list1.capacity()); // 10
 
-        Z_hw3.part2.StringBoundedList list2 = new Z_hw3.part2.ArrayStringBoundedList(0);
+        StringBoundedList list2 = new ArrayStringBoundedList(0);
         System.out.println(list2.size());     // 0
         System.out.println(list2.capacity()); // 0
 
         // Good, IllegalArgumentException thrown
         try {
-            new Z_hw3.part2.ArrayStringBoundedList(-1);
+            new ArrayStringBoundedList(-1);
             System.out.println("Exception not thrown!");
         } catch (IllegalArgumentException e) {
             System.out.println("Good, IllegalArgumentException thrown");
@@ -57,18 +57,18 @@ public class ArrayStringBoundedListTest {
     private static void testCapacity() {
         System.out.println("Testing capacity");
 
-        Z_hw3.part2.StringBoundedList list1 = new Z_hw3.part2.ArrayStringBoundedList(10);
+        StringBoundedList list1 = new ArrayStringBoundedList(10);
         list1.add("a");
         list1.add("b");
         list1.add("c");
         System.out.println(list1.capacity()); // 10
 
-        Z_hw3.part2.StringBoundedList list2 = new Z_hw3.part2.ArrayStringBoundedList(5);
+        StringBoundedList list2 = new ArrayStringBoundedList(5);
         list2.add("a");
         list2.add("b");
         System.out.println(list2.capacity()); // 5
 
-        Z_hw3.part2.StringBoundedList list3 = new Z_hw3.part2.ArrayStringBoundedList(0);
+        StringBoundedList list3 = new ArrayStringBoundedList(0);
         System.out.println(list3.capacity()); // 0
 
         System.out.println();
@@ -77,7 +77,7 @@ public class ArrayStringBoundedListTest {
     private static void testSize() {
         System.out.println("Testing size:");
 
-        Z_hw3.part2.StringBoundedList list = new Z_hw3.part2.ArrayStringBoundedList(10);
+        StringBoundedList list = new ArrayStringBoundedList(10);
         System.out.println(list.size()); // 0
 
         list.add("a");
@@ -107,7 +107,7 @@ public class ArrayStringBoundedListTest {
     private static void testAdd() {
         System.out.println("Testing add:");
 
-        Z_hw3.part2.StringBoundedList list = new Z_hw3.part2.ArrayStringBoundedList(3);
+        StringBoundedList list = new ArrayStringBoundedList(3);
         list.add("a");
         list.add(null);
         list.add("b");
@@ -126,7 +126,7 @@ public class ArrayStringBoundedListTest {
     }
 
     private static void testGet() {
-        Z_hw3.part2.StringBoundedList list = new Z_hw3.part2.ArrayStringBoundedList(10);
+        StringBoundedList list = new ArrayStringBoundedList(10);
 
         // Good, IndexOutOfBoundsException thrown
         try {
@@ -176,7 +176,7 @@ public class ArrayStringBoundedListTest {
     private static void testSet() {
         System.out.println("Testing set:");
 
-        Z_hw3.part2.StringBoundedList list = new Z_hw3.part2.ArrayStringBoundedList(10);
+        StringBoundedList list = new ArrayStringBoundedList(10);
 
         // Good, IndexOutOfBoundsException thrown
         try {
@@ -227,7 +227,7 @@ public class ArrayStringBoundedListTest {
     private static void testIndexOf() {
         System.out.println("Testing indexOf:");
 
-        Z_hw3.part2.StringBoundedList list = new Z_hw3.part2.ArrayStringBoundedList(10);
+        StringBoundedList list = new ArrayStringBoundedList(10);
         list.add("a");
         list.add("b");
 
@@ -256,7 +256,7 @@ public class ArrayStringBoundedListTest {
     private static void testLastIndexOf() {
         System.out.println("Testing lastIndexOf:");
 
-        Z_hw3.part2.StringBoundedList list = new Z_hw3.part2.ArrayStringBoundedList(10);
+        StringBoundedList list = new ArrayStringBoundedList(10);
         list.add("a");
         list.add("b");
 
@@ -285,10 +285,10 @@ public class ArrayStringBoundedListTest {
     private static void testClear() {
         System.out.println("Testing clear:");
 
-        Z_hw3.part2.StringBoundedList list1 = new Z_hw3.part2.ArrayStringBoundedList(0);
+        StringBoundedList list1 = new ArrayStringBoundedList(0);
         list1.clear();
 
-        Z_hw3.part2.StringBoundedList list2 = new Z_hw3.part2.ArrayStringBoundedList(3);
+        StringBoundedList list2 = new ArrayStringBoundedList(3);
         list2.add("a");
         list2.add(null);
         list2.add("b");
@@ -328,7 +328,7 @@ public class ArrayStringBoundedListTest {
     }
 
     private static void testToString() {
-        Z_hw3.part2.StringBoundedList list = new Z_hw3.part2.ArrayStringBoundedList(10);
+        StringBoundedList list = new ArrayStringBoundedList(10);
         System.out.println(list); // []
 
         list.add("a");
@@ -351,7 +351,7 @@ public class ArrayStringBoundedListTest {
     private static void testIsEmpty() {
         System.out.println("Testing isEmpty:");
 
-        Z_hw3.part2.StringBoundedList list = new Z_hw3.part2.ArrayStringBoundedList(3);
+        StringBoundedList list = new ArrayStringBoundedList(3);
         System.out.println(list.isEmpty()); // true
 
         list.add("a");
@@ -372,7 +372,7 @@ public class ArrayStringBoundedListTest {
     private static void testIsFull() {
         System.out.println("Testing isFull:");
 
-        Z_hw3.part2.StringBoundedList list = new Z_hw3.part2.ArrayStringBoundedList(3);
+        StringBoundedList list = new ArrayStringBoundedList(3);
         System.out.println(list.isFull()); // false
 
         list.add("a");
@@ -393,7 +393,7 @@ public class ArrayStringBoundedListTest {
     private static void testGetFirst() {
         System.out.println("Testing getFirst:");
 
-        Z_hw3.part2.StringBoundedList list = new Z_hw3.part2.ArrayStringBoundedList(3);
+        StringBoundedList list = new ArrayStringBoundedList(3);
 
         // Good, IndexOutOfBoundsException thrown
         try {
@@ -429,7 +429,7 @@ public class ArrayStringBoundedListTest {
     private static void testGetLast() {
         System.out.println("Testing getLast:");
 
-        Z_hw3.part2.StringBoundedList list = new Z_hw3.part2.ArrayStringBoundedList(3);
+        StringBoundedList list = new ArrayStringBoundedList(3);
 
         // Good, IndexOutOfBoundsException thrown
         try {
@@ -468,7 +468,7 @@ public class ArrayStringBoundedListTest {
     private static void testSetFirst() {
         System.out.println("Testing setFirst:");
 
-        Z_hw3.part2.StringBoundedList list = new Z_hw3.part2.ArrayStringBoundedList(3);
+        StringBoundedList list = new ArrayStringBoundedList(3);
 
         // Good, IndexOutOfBoundsException thrown
         try {
@@ -506,7 +506,7 @@ public class ArrayStringBoundedListTest {
     private static void testSetLast() {
         System.out.println("Testing setLast:");
 
-        Z_hw3.part2.StringBoundedList list = new Z_hw3.part2.ArrayStringBoundedList(3);
+        StringBoundedList list = new ArrayStringBoundedList(3);
 
         // Good, IndexOutOfBoundsException thrown
         try {
