@@ -5,7 +5,6 @@ import java.util.Comparator;
 public class GenericSelectionSort {
     public static <E extends Comparable<E>> void selectionSort(E[] a) {
         for (int i = 0; i < a.length - 1; i++) {
-            // find index of smallest remaining value
             int indexOfMin = i;
 
             for (int j = i + 1; j < a.length; j++) {
@@ -14,7 +13,6 @@ public class GenericSelectionSort {
                 }
             }
 
-            // swap smallest value to its proper place, a[i]
             swap(a, i, indexOfMin);
         }
     }
@@ -25,18 +23,18 @@ public class GenericSelectionSort {
         list[j] = temp;
     }
 
-    public static <E> void selectionSort(E[] a, Comparator<? super E> comparator) {
+    // for example, if E = Integer, we can use a Comparator<Integer>,
+    // or a Comparator<Number>, or a Comparator<Object>
+    public static <E> void selectionSort(E[] a, Comparator<? super E> comp) {
         for (int i = 0; i < a.length - 1; i++) {
-            // find index of smallest remaining value
             int indexOfMin = i;
 
             for (int j = i + 1; j < a.length; j++) {
-                if (comparator.compare(a[j], (a[indexOfMin])) < 0) {
+                if (comp.compare(a[j], a[indexOfMin]) < 0) {
                     indexOfMin = j;
                 }
             }
 
-            // swap smallest value to its proper place, a[i]
             swap(a, i, indexOfMin);
         }
     }
