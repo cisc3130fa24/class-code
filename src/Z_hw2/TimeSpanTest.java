@@ -326,7 +326,7 @@ public class TimeSpanTest {
         TimeSpan original = TimeSpan.ofHoursAndMinutes(2, 30);
         TimeSpan updated = original.plusHoursAndMinutes(2, 75);
         System.out.println(original); // 2h30m
-        System.out.println(updated);  // 3h45m
+        System.out.println(updated);  // 5h45m
 
         System.out.println("Testing IllegalArgumentException throwing:");
         try {
