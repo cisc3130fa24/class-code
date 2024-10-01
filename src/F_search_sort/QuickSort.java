@@ -1,5 +1,17 @@
 package F_search_sort;
 
+/*
+Idea: pick an element to be the "pivot" and rearrange the other
+elements around the pivot: all elements smaller than pivot go to the
+left of the pivot, and all elements greater than or equal to the pivot
+go to the right of the pivot. Keep doing this recursively for of the
+two subarrays around the pivot. Don't do anything to a subarray of length
+0 or 1.
+ */
+
+
+
+
 public class QuickSort {
     public static void main(String[] args) {
         int[] arr = {2, 3, 0, 5, 6, 1, -2, 3, 14, 12};
@@ -10,6 +22,8 @@ public class QuickSort {
     }
 
     private static void quickSort(int[] arr, int lowIndex, int highIndex) {
+        // implicit base case: highIndex <= lowIndex (subarray is of length 0 or 1)
+
         if (highIndex > lowIndex) {
             int pivotIndex = partition(arr, lowIndex, highIndex);
             quickSort(arr, lowIndex, pivotIndex - 1);

@@ -1,11 +1,40 @@
 package G_complexity;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.ArrayList;
 
 public class BigOhExamples {
     public static void main(String[] args) {
 
+    }
+
+    // We'll call arr.length n.
+    // Approximately how many steps does this method perform?
+    //   1             at the beginning
+    // + 1             loop initialization
+    // + 4 * (n - 1)   loop testing, body, and update
+    // + 1             at end
+    // = 4 * (n - 1) + 3
+    // = 4n - 4 + 3
+    // = 4n - 1
+    // We ignore constants in complexity analysis.
+    // We say that this method has a running time of O(n).
+    public static double max(double[] arr) {
+        double maxSoFar = arr[0];
+
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] > maxSoFar) {
+                maxSoFar = arr[i];
+            }
+        }
+
+        return maxSoFar;
+    }
+
+    // O(1)
+    public static double middle(double[] arr) {
+        return arr[arr.length / 2];
     }
 
     // O(1)
@@ -26,7 +55,8 @@ public class BigOhExamples {
         System.out.println(sum);
     }
 
-    // 1 + n^2 + 100,000n + 1
+    //   1 + n^2 + 100,000n + 1
+    // = n^2 + 100,000n + 2
     // O(n^2)
     public static void m3(int n) {
         int sum = 0;
@@ -41,7 +71,8 @@ public class BigOhExamples {
         System.out.println(sum);
     }
 
-    // 1 + (n^2)*100,000*n + 1
+    //   1 + (n^2)*(100,000*n) + 1
+    // = 100,000 * n^3 + 2
     // O(n^3)
     public static void m4(int n) {
         int sum = 0;
@@ -54,6 +85,7 @@ public class BigOhExamples {
         System.out.println(sum);
     }
 
+    // n * (n^2)
     // O(n^3)
     public static void m5(int n) {
         int sum = 0;
@@ -67,7 +99,13 @@ public class BigOhExamples {
 
     /*
     How many times does sum++ run in method m6?
-      1 + 2 + 3 + 4 + .... + n
+    i:             0   1   2   3         n-1
+    sum++ runs:    1 + 2 + 3 + 4 + .... + n
+
+    Formula:
+    1 + 2 + 3 + 4 + .... + n
+    = (n*(n + 1)) / 2
+    = (n^2 + n) / 2
     = (1/2)n^2 + (1/2)n
     which is O(n^2)
     */
@@ -81,7 +119,9 @@ public class BigOhExamples {
         System.out.println(sum);
     }
 
-    // (2n-2)(n+4) = c1*n^2 + c2*n + c3
+    //   (2n - 2)(n + 4)
+    // = 2n^2 + 8n - 2n - 8
+    // = 2n^2 + 6n - 8
     // O(n^2)
     public static void m7(int n) {
         int sum = 0;
@@ -99,6 +139,7 @@ public class BigOhExamples {
     = (1/2)n^2 + (1/2)n
 
     How many times does sum++ run in method m8?
+   i: 1   2   3          n-3       n-2
       5 + 6 + 7 + ... + (n-3)+4 + (n-2)+4
     = 5 + 6 + 7 + ... + (n+1) + (n+2)
     = (1 + 2 + 3 + 4 + 5 + .... + n) - (1 + 2 + 3 + 4) + (n+1) + (n+2)
@@ -107,12 +148,22 @@ public class BigOhExamples {
     */
     public static void m8(int n) {
         int sum = 0;
-        for (int i = 1; i <= n - 2; i++) {
+        for (int i = 1; i <= n - 2; i++) { // n - 2 times
             for (int j = 1; j <= i + 4; j++) {
                 sum++;
             }
         }
         System.out.println(sum);
+    }
+
+    // O(1)
+    public static double middle(ArrayList<Double> list) {
+        return list.get(list.size() / 2);
+    }
+
+    // O(n)
+    public static double middle(LinkedList<Double> list) {
+        return list.get(list.size() / 2);
     }
 
     /*
@@ -126,7 +177,7 @@ public class BigOhExamples {
     where n is the size of the ArrayList.
     */
     // n + n*(n + n) = 2n^2 + n
-    // O(n^2)
+    //
     public static void m9(int n) {
         List<Integer> list1 = new ArrayList<>();
         for (int i = 0; i < n; i++) { // n times
@@ -142,7 +193,7 @@ public class BigOhExamples {
 
     /*
     approximately log base 3 of n
-    which is O(log n)
+    which is
     */
     public void m10(int n) {
         while (n > 1) {
