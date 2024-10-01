@@ -2,7 +2,7 @@ package F_search_sort;
 
 public class QuickSort {
     public static void main(String[] args) {
-        int[] arr = {2, 3, 2, 5, 6, 1, -2, 3, 14, 12};
+        int[] arr = {2, 3, 0, 5, 6, 1, -2, 3, 14, 12};
     }
 
     public static void quickSort(int[] arr) {
@@ -18,14 +18,15 @@ public class QuickSort {
     }
 
     // Chooses a pivot element and partitions arr (from lowIndex through highIndex)
-    // around the pivot: all elements less than the pivot will be placed to the left of the pivot,
-    // and all elements greater than or equal to the pivot will be placed to the right of the pivot.
-    // There are many ways to accomplish this; here we are using
-    // a relatively easy approach, though not the most efficient one.
+    // around the pivot: all elements less than the pivot will be placed to the left
+    // of the pivot, and all elements greater than (or equal to) the pivot will be
+    // placed to the right of the pivot.
+    // There are many ways to accomplish this; here we are using a relatively easy
+    // approach, though not the most efficient one.
     // The method returns the index of the pivot element.
     public static int partition(int[] arr, int lowIndex, int highIndex) {
-        // choose the pivot element (we're choosing the first element here,
-        // but other approaches choose the last, the middle, or even a random element)
+        // choose the pivot element (we're choosing the first element here, but
+        // other approaches choose the last, the middle, or even a random element)
         int pivot = arr[lowIndex];
 
         // count how many elements are less than the pivot
@@ -43,9 +44,9 @@ public class QuickSort {
         // now rearrange elements around the pivot using a two-pointer approach
         int leftPointer = lowIndex, rightPointer = highIndex;
         while (leftPointer < pivotIndex && rightPointer > pivotIndex) {
-            if (arr[leftPointer] < pivot) {
+            if (arr[leftPointer] < pivot) {          // arr[leftPointer] can remain where it is
                 leftPointer++;
-            } else if (arr[rightPointer] >= pivot) {
+            } else if (arr[rightPointer] >= pivot) { // arr[rightPointer] can remain where it is
                 rightPointer--;
             } else {
                 swap(arr, leftPointer, rightPointer);
