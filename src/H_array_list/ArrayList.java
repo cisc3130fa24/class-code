@@ -18,11 +18,13 @@ public class ArrayList<E> implements List<E> {
         size = 0;
     }
 
+    // O(1)
     @Override
     public int size() {
         return size;
     }
 
+    // O(1), see below
     @Override
     public boolean add(E e) {
         add(size, e);
@@ -57,6 +59,7 @@ public class ArrayList<E> implements List<E> {
      * meaning that it costs $50 per session.
      */
 
+    // O(n)
     @Override
     public void add(int index, E element) {
         Objects.checkIndex(index, size + 1);
@@ -73,12 +76,14 @@ public class ArrayList<E> implements List<E> {
         size++;
     }
 
+    // O(n)
     public void ensureCapacity(int desiredCapacity) {
         if (elements.length < desiredCapacity) {
             elements = Arrays.copyOf(elements, desiredCapacity); // O(n)!
         }
     }
 
+    // O(1)
     @Override
     public E get(int index) {
         Objects.checkIndex(index, size);
@@ -92,6 +97,7 @@ public class ArrayList<E> implements List<E> {
         return elements[index];
     }
 
+    // O(n), but O(n^2) if we would've used String instead of StringBuilder
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("]");
