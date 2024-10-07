@@ -4,13 +4,10 @@ package F_search_sort;
 Idea: pick an element to be the "pivot" and rearrange the other
 elements around the pivot: all elements smaller than pivot go to the
 left of the pivot, and all elements greater than or equal to the pivot
-go to the right of the pivot. Keep doing this recursively for of the
+go to the right of the pivot. Keep doing this recursively for each of the
 two subarrays around the pivot. Don't do anything to a subarray of length
-0 or 1.
+0 or 1, since it's already sorted.
  */
-
-
-
 
 public class QuickSort {
     public static void main(String[] args) {
