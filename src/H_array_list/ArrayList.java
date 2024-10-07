@@ -79,7 +79,17 @@ public class ArrayList<E> implements List<E> {
     // O(n)
     public void ensureCapacity(int desiredCapacity) {
         if (elements.length < desiredCapacity) {
-            elements = Arrays.copyOf(elements, desiredCapacity); // O(n)!
+            @SuppressWarnings("unchecked") E[] newArray = (E[]) new Object[desiredCapacity];
+
+            for (int i = 0; i < elements.length; i++) {
+                newArray[i] = elements[i];
+            }
+
+            elements = newArray;
+
+            // the above statements (starting from the annotation) can be replaced with
+            // the following statement:
+            // elements = Arrays.copyOf(elements, desiredCapacity); // O(n)!
         }
     }
 
