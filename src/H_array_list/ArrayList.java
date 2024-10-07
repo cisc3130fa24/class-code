@@ -27,6 +27,34 @@ public class ArrayList<E> implements List<E> {
         add(size, e);
         return true;
     }
+    /*
+     * In most situations, this method requires O(1) steps.
+     * In the worst case, when the array needs to be resized,
+     * this method requires O(n) steps.
+     * Usually when analyzing running time we care about the
+     * worst case scenario.
+     * However, we will consider this method to have a running
+     * time of O(1). Why?
+     * Because once we spend O(n) time to double the size of the
+     * array, we get to perform about n additions without having
+     * to resize the array, and each of those additions takes
+     * only O(1) time.
+     * In other words, if we call this method n times, it will
+     * only use O(n) time in total, not O(n^2) time.
+     * This is an example of "amortized analysis."
+     *
+     * Analogy: Suppose it costs $1,000 to take a course that
+     * has 20 sessions; suppose you have to pay for the entire
+     * course upfront. How much does it cost per session?
+     * One way of looking at it: costs $1,000 for the first session,
+     * and then the other sessions are free. So in the worst case,
+     * you have to pay $1,000 for a single session. This approach
+     * focuses solely on the worst case, ignoring the broader picture.
+     * The amortized approach says: Although you have to pay $1,000
+     * for the first session, that entitles you 19 free sessions.
+     * So think of the $1,000 as being distributed over all 20 sessions,
+     * meaning that it costs $50 per session.
+     */
 
     @Override
     public void add(int index, E element) {
@@ -38,6 +66,13 @@ public class ArrayList<E> implements List<E> {
     @Override
     public E get(int index) {
         Objects.checkIndex(index, size);
+        /*
+        // the above line is equivalent to the following:
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Index " + index + " out of bounds for length " + size);
+        }
+        */
+
         return elements[index];
     }
 
