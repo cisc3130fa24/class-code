@@ -5,6 +5,8 @@ import java.lang.reflect.Modifier;
 
 public class ArrayBoundedListTest {
     public static void main(String[] args) {
+        testGeneric();
+
         testConstructor();
         testCapacity();
         testSize();
@@ -28,6 +30,20 @@ public class ArrayBoundedListTest {
         testAddIntString();
         testRemoveInt();
         testRemoveString();
+    }
+
+    private static void testGeneric() {
+        System.out.println("Testing generic:");
+
+        BoundedList<String> stringList = new ArrayBoundedList<>(10);
+        stringList.add("a");
+        String s = stringList.get(0);
+
+        BoundedList<Integer> integerList = new ArrayBoundedList<>(10);
+        integerList.add(1);
+        int i = integerList.get(0);
+
+        System.out.println();
     }
 
     private static void testConstructor() {
