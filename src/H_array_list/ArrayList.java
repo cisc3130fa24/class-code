@@ -1,5 +1,6 @@
 package H_array_list;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 public class ArrayList<E> implements List<E> {
@@ -60,7 +61,22 @@ public class ArrayList<E> implements List<E> {
     public void add(int index, E element) {
         Objects.checkIndex(index, size + 1);
 
-        // TODO
+        if (size == elements.length) {
+            ensureCapacity(2 * elements.length + 1);
+        }
+
+        for (int i = size; i > index; i--) {
+            elements[i] = elements[i - 1];
+        }
+
+        elements[index] = element;
+        size++;
+    }
+
+    public void ensureCapacity(int desiredCapacity) {
+        if (elements.length < desiredCapacity) {
+            elements = Arrays.copyOf(elements, desiredCapacity); // O(n)!
+        }
     }
 
     @Override
