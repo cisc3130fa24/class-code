@@ -1,7 +1,7 @@
 package G_complexity;
 
 /**
- * Provides an empirical test of the efficiency of repeated string concatentation
+ * Provides an empirical test of the efficiency of repeated string concatenation
  * versus use of the StringBuilder class.
  */
 public class StringExperiment {
@@ -10,26 +10,27 @@ public class StringExperiment {
      * character c.
      */
     public static String repeat1(char c, int n) {
-        String answer = "";
+        String result = "";
 
         for (int j = 0; j < n; j++) {
-            answer += c;
+            result += c;
         }
 
-        return answer;
+        return result;
     }
     /*
-    When we do `answer += c`, Java does not add c to the end of an existing
-    String object. Instead, Java creates a new String object, copies all
-    characters from answer into the new String object, and adds c at the end.
-    running time of repeat1:
+    String objects are immutable. Therefore, when executing `answer += c`,
+    Java does not add c to the end of an existing String object. Instead,
+    Java creates a new String object, copies all characters from result
+    into the new String object, and adds c at the end.
+    Running time of repeat1:
     - in the first pass of the loop, there is 1 step
     - in the second pass, there are two steps.
     - in the third pass, there are three steps
-    - and so on
-    - there are n passes in total.
+    - and so on.
+    - There are n passes in total.
     The total number of steps is approximately 1 + 2 + 3 + ... + n.
-    1 + 2 + 3 + ... + n = (1/2)n(n + 1) = (1/2)n^2 + (1/2)n.
+    1 + 2 + 3 + ... + n = (1/2)n^2 + (1/2)n.
     So the running time is O(n^2).
      */
 
@@ -46,12 +47,12 @@ public class StringExperiment {
         return sb.toString();
     }
     /*
-    Saying `sb.append(c)` does not create a new StringBuilder object. Instead,
-    it simply adds c to the end of the existing StringBuilder.
-    running time of repeat2:
-    the for loop runs n times.
-    Inside the loop, we just call the append method of StringBuilder; the
-    append method runs in constant time.
+    Executing `sb.append(c)` does not create a new StringBuilder object.
+    Instead, it simply adds c to the end of the existing StringBuilder.
+    Running time of repeat2:
+     - the for loop runs n times.
+     - Inside the loop, we just call the append method of StringBuilder
+     - the append method runs in constant time.
     So the running time of repeat2 is O(n).
      */
 
@@ -60,7 +61,7 @@ public class StringExperiment {
      * size of n each trial, beginning with the given start value.
      */
     public static void main(String[] args) {
-        int n = 50000;                           // starting value
+        int n = 50000;
         int trials = 10;
         int start = n;  // remember the original starting value
 

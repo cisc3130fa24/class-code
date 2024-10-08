@@ -87,9 +87,9 @@ public class ArrayList<E> implements List<E> {
 
             elements = newArray;
 
-            // the above statements (starting from the annotation) can be replaced with
+            // the above statements (from the annotation onward) can be replaced with
             // the following statement:
-            // elements = Arrays.copyOf(elements, desiredCapacity); // O(n)!
+            // elements = Arrays.copyOf(elements, desiredCapacity); // still O(n)
         }
     }
 

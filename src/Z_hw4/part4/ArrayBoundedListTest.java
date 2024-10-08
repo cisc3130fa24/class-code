@@ -72,5 +72,12 @@ public class ArrayBoundedListTest {
         } catch (Exception e) {
             System.out.println("Wrong type of exception thrown!");
         }
+
+        for (String s : list) {
+            System.out.println(s);
+        }
+        // a
+        // b
+        // c
     }
 }

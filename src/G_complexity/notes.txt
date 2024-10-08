@@ -93,13 +93,13 @@ Best case, worst case, and average case:
   - We typically focus on worst case.
 - Example: selection sort: always O(n^2), even if the array is already sorted
   - Best case = worst case: running time of O(n^2)
-- Example: for bubble sort with optimization, if the array comes fully sorted,
+- Example: for the optimized bubble sort, if the array comes fully sorted,
   then only one pass is performed, and we're done: O(n). In the worst case, we
   must perform all passes: O(n^2). Average turns out to be O(n^2).
 
 Space complexity:
 - Just as we can talk about the time complexity of a piece of code,
-  we can talk about the space complexiy of a piece of code:
+  we can talk about the space complexity of a piece of code:
   how much memory does it require?
 - The memory used by the input (such as an array) doesn't count.
 - We can use big-Oh notation for space complexity.
@@ -110,5 +110,5 @@ Logarithms:
 - In computer science, base 2 is the most common logarithm base,
   so we write log base 2 of n as just log n.
 - When using big-Oh notation, a log of any base can be simplified
-  to log base 2, since all logs differ only by constant factors,
+  to log base 2, since logs of different bases differ only by constant factors,
   due to the "change of base formula."

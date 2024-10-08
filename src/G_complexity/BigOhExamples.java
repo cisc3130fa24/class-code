@@ -177,7 +177,7 @@ public class BigOhExamples {
     where n is the size of the ArrayList.
     */
     // n + n*(n + n) = 2n^2 + n
-    //
+    // O(n^2)
     public static void m9(int n) {
         List<Integer> list1 = new ArrayList<>();
         for (int i = 0; i < n; i++) { // n times
@@ -193,7 +193,7 @@ public class BigOhExamples {
 
     /*
     approximately log base 3 of n
-    which is
+    which is O(log n)
     */
     public void m10(int n) {
         while (n > 1) {
