@@ -3,7 +3,6 @@ package Z_hw4.part2;
 public class BoundedListTest {
     public static void main(String[] args) {
         testAddAll1();
-//        testAddAll2();
         testCopyTo();
     }
 
@@ -37,14 +36,6 @@ public class BoundedListTest {
         } catch (Exception e) {
             System.out.println("Wrong type of exception thrown!");
         }
-
-        System.out.println();
-    }
-
-    private static void testAddAll2() {
-        System.out.println("Testing addAll(index, other):");
-
-
 
         System.out.println();
     }
