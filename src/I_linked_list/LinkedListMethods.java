@@ -91,46 +91,6 @@ public class LinkedListMethods {
 
     // time: O(1)
     // space: O(1)
-    public static <E> E getFirst(ListNode<E> head) {
-        if (head == null) {
-            throw new IllegalStateException("empty list");
-        } else {
-            return head.data;
-        }
-    }
-
-    // time: O(n)
-    // space: O(1)
-    public static <E> E getLastIteratively(ListNode<E> head) {
-        if (head == null) {
-            throw new IllegalStateException("empty list");
-        }
-
-        ListNode<E> current = head;
-
-        while (current.next != null) {
-            current = current.next;
-        }
-
-        return current.data;
-    }
-
-    // time: O(n)
-    // space: O(n)
-    public static <E> E getLastRecursively(ListNode<E> head) {
-        if (head == null) {
-            throw new IllegalStateException("empty list");
-        }
-
-        if (head.next == null) {
-            return head.data;
-        } else {
-            return getLastRecursively(head.next);
-        }
-    }
-
-    // time: O(1)
-    // space: O(1)
     public static <E> ListNode<E> addFirst(ListNode<E> head, E element) {
         return new ListNode<>(element, head);
     }
