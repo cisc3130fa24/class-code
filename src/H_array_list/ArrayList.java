@@ -107,6 +107,15 @@ public class ArrayList<E> implements List<E> {
      * meaning that it costs $50 per session.
      */
 
+    @Override
+    public void clear() {
+        for (int i = 0; i < size; i++) {
+            elements[i] = null;
+        }
+
+        size = 0;
+    }
+
     // O(n), but O(n^2) if we would've used String instead of StringBuilder
     @Override
     public String toString() {
