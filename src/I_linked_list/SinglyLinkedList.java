@@ -33,6 +33,11 @@ public class SinglyLinkedList<E> {
     private Node<E> head, tail;
     private int size;
 
+    public SinglyLinkedList() {
+        head = tail = null;
+        size = 0;
+    }
+
     public int size() {
         return size;
     }
