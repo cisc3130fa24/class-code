@@ -43,8 +43,8 @@ public class ArrayList<E> implements List<E> {
     public void add(int index, E element) {
         Objects.checkIndex(index, size + 1);
 
-        if (size == elements.length) {
-            ensureCapacity(2 * elements.length + 1);
+        if (isFull()) {
+            ensureCapacity(2 * capacity() + 1);
         }
 
         for (int i = size; i > index; i--) {
@@ -55,10 +55,19 @@ public class ArrayList<E> implements List<E> {
         size++;
     }
 
+    private boolean isFull() {
+        return size == capacity();
+    }
+
+    private int capacity() {
+        return elements.length;
+    }
+
     // O(n)
     public void ensureCapacity(int desiredCapacity) {
         if (elements.length < desiredCapacity) {
-            @SuppressWarnings("unchecked") E[] newArray = (E[]) new Object[desiredCapacity];
+            @SuppressWarnings("unchecked")
+            E[] newArray = (E[]) new Object[desiredCapacity];
 
             for (int i = 0; i < elements.length; i++) {
                 newArray[i] = elements[i];
@@ -107,8 +116,11 @@ public class ArrayList<E> implements List<E> {
      * meaning that it costs $50 per session.
      */
 
+    // O(n)
     @Override
     public void clear() {
+        // not strictly required, but it is a good idea to set all elements to null,
+        // to allow the objects to be deleted if there are no other reference to them
         for (int i = 0; i < size; i++) {
             elements[i] = null;
         }
