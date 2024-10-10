@@ -65,7 +65,7 @@ public class ArrayList<E> implements List<E> {
 
     // O(n)
     public void ensureCapacity(int desiredCapacity) {
-        if (elements.length < desiredCapacity) {
+        if (capacity() < desiredCapacity) {
             @SuppressWarnings("unchecked")
             E[] newArray = (E[]) new Object[desiredCapacity];
 

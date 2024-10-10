@@ -17,13 +17,15 @@ public class LinkedListMethods {
         head3.next.next = new ListNode<>(3);
         head3.next.next.next = new ListNode<>(4);
 
-        printIteratively(head1); // A B C 
-        printIteratively(head2); // 
+        printIteratively(head1); // A B C
+        printIteratively(head2); //
         printIteratively(head3); // 1 2 3 4
 
         printReversedRecursively(head1); // C B A
     }
 
+    // Given the head of a linked list, which may be empty,
+    // this method prints the list's elements.
     // time: O(n)
     // space: O(1)
     public static <E> void printIteratively(ListNode<E> head) {
@@ -32,6 +34,7 @@ public class LinkedListMethods {
             head = head.next;
         }
     }
+
 
     // time: O(n)
     // space: O(n)
@@ -42,6 +45,8 @@ public class LinkedListMethods {
         }
     }
 
+    // Given the head of a linked list, which may be empty,
+    // this method returns the number of elements in the list.
     // time: O(n)
     // space: O(1)
     public static <E> int getSizeIteratively(ListNode<E> head) {
@@ -65,6 +70,8 @@ public class LinkedListMethods {
         }
     }
 
+    // Given the head of a linked list, which may be empty,
+    // this method prints the list's elements in reverse order.
     // time: O(n)
     // space: O(n)
     public static <E> void printReversedIteratively(ListNode<E> head) {
@@ -89,12 +96,18 @@ public class LinkedListMethods {
         }
     }
 
+    // Given the head of a linked list, which may be empty, and an element,
+    // this method adds the element at the front of the list,
+    // and returns the head of the updated list.
     // time: O(1)
     // space: O(1)
     public static <E> ListNode<E> addFirst(ListNode<E> head, E element) {
         return new ListNode<>(element, head);
     }
 
+    // Given the head of a linked list, which may be empty, and an element,
+    // this method adds the element at the end of the list,
+    // and returns the head of the updated list.
     // time: O(n)
     // space: O(1)
     public static <E> ListNode<E> addLastIteratively(ListNode<E> head, E element) {
