@@ -22,6 +22,11 @@ public class LinkedListMethods {
         printIteratively(head3); // 1 2 3 4
 
         printReversedRecursively(head1); // C B A
+
+        ListNode<Integer> head4 = null;
+        for (int i = 5; i <= 25; i += 5) {
+            head4 = addLastIteratively(head4, i);
+        }
     }
 
     // Given the head of a linked list, which may be empty,
