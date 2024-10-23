@@ -4,9 +4,17 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 /*
-Write a method that is given a stack of integers and returns the sum of the stack's elements.
-When the method terminates, the original stack must be in the same state that it was originally in.
-Constraint: Do not use any auxiliary collections (arrays, ArrayLists, etc.) except for a single stack.
+Write a method that is given a stack of integers
+and returns the sum of the stack's elements.
+
+When the method terminates, the stack must
+be in the same state that it was originally in.
+
+Constraints:
+1. Only use the 5 standard stack operations:
+   push(), pop(), peek(), isEmpty(), size().
+2. Do not use any auxiliary collections (arrays, ArrayLists, etc.)
+   except for a single stack.
  */
 public class Puzzle {
     public static int sum(Deque<Integer> stack) {
@@ -14,9 +22,9 @@ public class Puzzle {
         int sum = 0;
 
         while (!stack.isEmpty()) {
-            int curr = stack.pop();
-            sum += curr;
-            auxStack.push(curr);
+            int element = stack.pop();
+            auxStack.push(element);
+            sum += element;
         }
 
         while (!auxStack.isEmpty()) {
