@@ -1,4 +1,4 @@
-package J_stack_queue_deque.A_stack.D_application;
+package J_stack_queue_deque.A_stack.D_applications;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
