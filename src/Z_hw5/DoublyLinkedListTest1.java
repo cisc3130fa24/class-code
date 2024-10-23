@@ -1,4 +1,6 @@
-package Z_hw5;/*
+package Z_hw5;
+
+/*
 This file tests the following methods of DoublyLinkedList:
 - size, isEmpty
 - toString, toReverseString
