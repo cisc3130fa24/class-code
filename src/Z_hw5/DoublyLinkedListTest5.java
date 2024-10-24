@@ -1,6 +1,8 @@
 package Z_hw5;
 
 /*
+DO NOT MODIFY THIS FILE.
+
 This file tests the following methods of DoublyLinkedList:
 - size, isEmpty
 - toString, toReverseString
@@ -12,11 +14,15 @@ This file tests the following methods of DoublyLinkedList:
 - add(E e), remove(Object o)
 - indexOf
 - lastIndexOf
+- get
+- set
+- add(int index, E e)
+- remove(int index)
  */
 
 import java.util.NoSuchElementException;
 
-public class DoublyLinkedListTest4 {
+public class DoublyLinkedListTest5 {
     public static void main(String[] args) {
         testAddFirst();
         testAddLast();
@@ -31,6 +37,10 @@ public class DoublyLinkedListTest4 {
         testRemoveObject();
         testIndexOf();
         testLastIndexOf();
+        testGet();
+        testSet();
+        testAddAtIndex();
+        testRemoveAtIndex();
     }
 
     private static void testAddFirst() {
@@ -560,7 +570,7 @@ public class DoublyLinkedListTest4 {
 
     private static void testIndexOf() {
         System.out.println("testing indexOf");
-        
+
         DoublyLinkedList<String> list = new DoublyLinkedList<>();
         System.out.println(list.indexOf("a")); // expected: -1
         list.add("a");
@@ -578,7 +588,7 @@ public class DoublyLinkedListTest4 {
 
     private static void testLastIndexOf() {
         System.out.println("testing lastIndexOf");
-        
+
         DoublyLinkedList<String> list = new DoublyLinkedList<>();
         System.out.println(list.lastIndexOf("a")); // expected: -1
         list.add("a");
@@ -593,5 +603,223 @@ public class DoublyLinkedListTest4 {
 
         System.out.println();
     }
-}
 
+    private static void testGet() {
+        System.out.println("testing get");
+
+        DoublyLinkedList<String> list = new DoublyLinkedList<>();
+
+        try {
+            list.get(-1);
+            System.out.println("An exception was supposed to occur here, but didn't");
+        } catch (IndexOutOfBoundsException ignored) {
+        }
+
+        try {
+            list.get(0);
+            System.out.println("An exception was supposed to occur here, but didn't");
+        } catch (IndexOutOfBoundsException ignored) {
+        }
+
+        list.add("a");
+        System.out.println(list.get(0)); // expected: a
+
+        list.add("b");
+        list.add("c");
+        list.add("d");
+        list.add("e");
+        list.add("f");
+        System.out.println(list.get(1)); // expected: b
+        System.out.println(list.get(2)); // expected: c
+        System.out.println(list.get(3)); // expected: d
+        System.out.println(list.get(4)); // expected: e
+        System.out.println(list.get(5)); // expected: f
+        System.out.println();
+
+        try {
+            list.get(-1);
+            System.out.println("An exception was supposed to occur here, but didn't");
+        } catch (IndexOutOfBoundsException ignored) {
+        }
+
+        try {
+            list.get(6);
+            System.out.println("An exception was supposed to occur here, but didn't");
+        } catch (IndexOutOfBoundsException ignored) {
+        }
+    }
+
+    private static void testSet() {
+        System.out.println("testing set");
+
+        DoublyLinkedList<String> list = new DoublyLinkedList<>();
+
+        try {
+            list.set(-1, "a");
+            System.out.println("An exception was supposed to occur here, but didn't");
+        } catch (IndexOutOfBoundsException ignored) {
+        }
+
+        try {
+            list.set(0, "a");
+            System.out.println("An exception was supposed to occur here, but didn't");
+        } catch (IndexOutOfBoundsException ignored) {
+        }
+
+        list.add("a");
+        System.out.println(list.set(0, "aa"));  // expected: a
+        System.out.println(list);               // expected: [aa]
+
+        list.add("b");
+        list.add("c");
+        list.add("d");
+        list.add("e");
+        list.add("f");
+
+        System.out.println(list.set(1, "bb"));  // expected: b
+        System.out.println(list.set(2, "cc"));  // expected: c
+        System.out.println(list.set(3, "dd"));  // expected: d
+        System.out.println(list.set(4, "ee"));  // expected: e
+        System.out.println(list.set(5, "f"));   // expected: f
+        System.out.println(list);               // expected: [aa, bb, cc, dd, ee, f]
+        System.out.println(list.size());        // expected: 6
+        System.out.println();
+
+        try {
+            list.set(-1, "a");
+            System.out.println("An exception was supposed to occur here, but didn't");
+        } catch (IndexOutOfBoundsException ignored) {
+        }
+
+        try {
+            list.set(6, "a");
+            System.out.println("An exception was supposed to occur here, but didn't");
+        } catch (IndexOutOfBoundsException ignored) {
+        }
+    }
+
+    private static void testAddAtIndex() {
+        System.out.println("testing add(int, E)");
+
+        DoublyLinkedList<String> list = new DoublyLinkedList<>();
+
+        try {
+            list.add(-1, "a");
+            System.out.println("An exception should have occurred here, but didn't");
+        } catch (IndexOutOfBoundsException ignored) {
+        }
+
+        try {
+            list.add(1, "a");
+            System.out.println("An exception should have occurred here, but didn't");
+        } catch (IndexOutOfBoundsException ignored) {
+        }
+
+        list.add(0, "a");
+        System.out.println(list.size());            // expected: 1
+        System.out.println(list);                   // expected: [a]
+        System.out.println(list.toReverseString()); // expected: [a]
+        System.out.println();
+
+        list.add(1, "b");
+        System.out.println(list.size());            // expected: 2
+        System.out.println(list);                   // expected: [a, b]
+        System.out.println(list.toReverseString()); // expected: [b, a]
+        System.out.println();
+
+        list.add(0, "z");
+        System.out.println(list.size());            // expected: 3
+        System.out.println(list);                   // expected: [z, a, b]
+        System.out.println(list.toReverseString()); // expected: [b, a, z]
+        System.out.println();
+
+        list.add(2, "ab");
+        System.out.println(list.size());            // expected: 4
+        System.out.println(list);                   // expected: [z, a, ab, b]
+        System.out.println(list.toReverseString()); // expected: [b, ab, a, z]
+        System.out.println();
+
+        list.add(2, "other");
+        System.out.println(list.size());            // expected: 5
+        System.out.println(list);                   // expected: [z, a, other, ab, b]
+        System.out.println(list.toReverseString()); // expected: [b, ab, other, a, z]
+        System.out.println();
+
+        try {
+            list.add(-1, "a");
+            System.out.println("An exception should have occurred here, but didn't");
+        } catch (IndexOutOfBoundsException ignored) {
+        }
+
+        try {
+            list.add(list.size() + 1, "a");
+            System.out.println("An exception should have occurred here, but didn't");
+        } catch (IndexOutOfBoundsException ignored) {
+        }
+    }
+
+    private static void testRemoveAtIndex() {
+        System.out.println("testing remove(int)");
+
+        DoublyLinkedList<String> list = new DoublyLinkedList<>();
+
+        try {
+            list.remove(-1);
+            System.out.println("An exception should have occurred here, but didn't");
+        } catch (IndexOutOfBoundsException ignored) {
+        }
+
+        try {
+            list.remove(0);
+            System.out.println("An exception should have occurred here, but didn't");
+        } catch (IndexOutOfBoundsException ignored) {
+        }
+
+        list.add("a");
+        String result = list.remove(0);
+        System.out.println(result);                 // expected: a
+        System.out.println(list.size());            // expected: 0
+        System.out.println(list);                   // expected: []
+        System.out.println(list.toReverseString()); // expected: []
+        System.out.println();
+
+        list.add("a");
+        list.add("b");
+        list.add("c");
+        list.add("d");
+        list.add("e");
+
+        result = list.remove(2);
+        System.out.println(result);                 // expected: c
+        System.out.println(list.size());            // expected: 4
+        System.out.println(list);                   // expected: [a, b, d, e]
+        System.out.println(list.toReverseString()); // expected: [e, d, b, a]
+        System.out.println();
+
+        result = list.remove(0);
+        System.out.println(result);                 // expected: a
+        System.out.println(list.size());            // expected: 3
+        System.out.println(list);                   // expected: [b, d, e]
+        System.out.println(list.toReverseString()); // expected: [e, d, b]
+        System.out.println();
+
+        result = list.remove(2);
+        System.out.println(result);                 // expected: e
+        System.out.println(list.size());            // expected: 2
+        System.out.println(list);                   // expected: [b, d]
+        System.out.println(list.toReverseString()); // expected: [d, b]
+        System.out.println();
+
+        try {
+            list.remove(-1);
+            System.out.println("An exception should have occurred here, but didn't");
+        } catch (IndexOutOfBoundsException ignored) {
+        }
+
+        try {
+            list.remove(2);
+            System.out.println("An exception should have occurred here, but didn't");
+        } catch (IndexOutOfBoundsException ignored) {
+        }
+    }
+}
