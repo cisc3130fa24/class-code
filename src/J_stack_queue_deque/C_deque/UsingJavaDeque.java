@@ -18,7 +18,12 @@ Java Deque methods:
     - pop()	    [equivalent to removeFirst()]
     - peek()	[equivalent to getFirst()]
 
+    Deque also inherits all of Queue's methods, such as add(e), remove(), and peek().
+
     Deque contains many other methods, including size() and isEmpty().
+
+Two primary implementations of Deque in the JCF: LinkedList and ArrayDeque.
+For both of these implementations, all the methods listed above run in O(1) time.
  */
 
 public class UsingJavaDeque {
