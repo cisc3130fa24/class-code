@@ -114,7 +114,7 @@ public class ArrayQueue<E> implements Queue<E> {
         for (int i = 0; i < size(); i++) {
             sb.append(elements[(indexOfFirst + i) % elements.length]);
 
-            if (i < size()) {
+            if (i < size() - 1) {
                 sb.append(", ");
             }
         }
