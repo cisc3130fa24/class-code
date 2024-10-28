@@ -1,4 +1,4 @@
-package J_stack_queue_deque.A_stack.D_application;
+package J_stack_queue_deque.A_stack.D_applications;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -44,18 +44,21 @@ public class MatchDelimiters {
         List<Character> closingDelimiters = List.of(')', '}', ']');
         Deque<Character> stack = new ArrayDeque<>(); // or: new LinkedList<>();
 
-        for (char c : expression.toCharArray()) {
-            if (openingDelimiters.contains(c)) { // c is a left delimiter
-                stack.push(c);
-            } else if (closingDelimiters.contains(c)) { // c is a right delimiter
+        for (char ch : expression.toCharArray()) {
+            if (openingDelimiters.contains(ch)) { // ch is a left delimiter
+                stack.push(ch);
+            } else if (closingDelimiters.contains(ch)) { // ch is a right delimiter
                 if (stack.isEmpty()) {
                     return false; // nothing to match with
                 }
 
-                if (closingDelimiters.indexOf(c) != openingDelimiters.indexOf(stack.pop())) {
+                if (closingDelimiters.indexOf(ch) != openingDelimiters.indexOf(stack.pop())) {
                     return false; // mismatched delimiter
                 }
             }
+
+            // for debugging
+            // System.out.println(ch + " " + stack);
         }
 
         return stack.isEmpty(); // were all opening delimiters matched?

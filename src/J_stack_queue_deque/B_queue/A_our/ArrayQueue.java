@@ -3,7 +3,8 @@ package J_stack_queue_deque.B_queue.A_our;
 import java.util.NoSuchElementException;
 
 /**
- * Implementation of the queue ADT by using a circular array, aka a ring buffer.
+ * Implementation of the queue ADT using a circular array,
+ * aka a ring buffer. All Queue operations run in O(1) time.
  */
 public class ArrayQueue<E> implements Queue<E> {
     private E[] elements;
