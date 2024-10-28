@@ -9,37 +9,7 @@ public class ArrayDequeTest {
         ArrayDeque<Integer> deque = new ArrayDeque<>();
         printInfo(deque);
 
-        try {
-            deque.getFirst();
-            System.out.println("A NoSuchElementException was supposed to be thrown here!");
-        } catch (NoSuchElementException ignored) {
-        } catch (Exception ignored) {
-            System.out.println("A NoSuchElementException was supposed to be thrown here!");
-        }
-
-        try {
-            deque.getLast();
-            System.out.println("A NoSuchElementException was supposed to be thrown here!");
-        } catch (NoSuchElementException ignored) {
-        } catch (Exception ignored) {
-            System.out.println("A NoSuchElementException was supposed to be thrown here!");
-        }
-
-        try {
-            deque.removeFirst();
-            System.out.println("A NoSuchElementException was supposed to be thrown here!");
-        } catch (NoSuchElementException ignored) {
-        } catch (Exception ignored) {
-            System.out.println("A NoSuchElementException was supposed to be thrown here!");
-        }
-
-        try {
-            deque.removeLast();
-            System.out.println("A NoSuchElementException was supposed to be thrown here!");
-        } catch (NoSuchElementException ignored) {
-        } catch (Exception ignored) {
-            System.out.println("A NoSuchElementException was supposed to be thrown here!");
-        }
+        testExceptionThrowing(deque);
 
         deque.addLast(10);
         deque.addLast(20);
@@ -88,6 +58,48 @@ public class ArrayDequeTest {
         deque.addFirst(800);
 
         printInfo(deque);
+
+        while (!deque.isEmpty()) {
+            deque.removeLast();
+        }
+
+        printInfo(deque);
+
+        testExceptionThrowing(deque);
+    }
+
+    private static void testExceptionThrowing(ArrayDeque<Integer> deque) {
+        try {
+            deque.getFirst();
+            System.out.println("A NoSuchElementException was supposed to be thrown here!");
+        } catch (NoSuchElementException ignored) {
+        } catch (Exception ignored) {
+            System.out.println("A NoSuchElementException was supposed to be thrown here!");
+        }
+
+        try {
+            deque.getLast();
+            System.out.println("A NoSuchElementException was supposed to be thrown here!");
+        } catch (NoSuchElementException ignored) {
+        } catch (Exception ignored) {
+            System.out.println("A NoSuchElementException was supposed to be thrown here!");
+        }
+
+        try {
+            deque.removeFirst();
+            System.out.println("A NoSuchElementException was supposed to be thrown here!");
+        } catch (NoSuchElementException ignored) {
+        } catch (Exception ignored) {
+            System.out.println("A NoSuchElementException was supposed to be thrown here!");
+        }
+
+        try {
+            deque.removeLast();
+            System.out.println("A NoSuchElementException was supposed to be thrown here!");
+        } catch (NoSuchElementException ignored) {
+        } catch (Exception ignored) {
+            System.out.println("A NoSuchElementException was supposed to be thrown here!");
+        }
     }
 
     private static void printInfo(ArrayDeque<Integer> deque) {
