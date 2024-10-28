@@ -25,11 +25,14 @@ public class ArrayQueue<E> implements Queue<E> {
         indexOfFirst = indexOfLast = -1;
     }
 
+    @Override
     public int size() {
         if (indexOfFirst == -1 && indexOfLast == -1) {
             return 0;
+        } else if (indexOfFirst <= indexOfLast) {
+            return indexOfLast - indexOfFirst + 1;
         } else {
-            return (indexOfLast - indexOfFirst + elements.length + 1) % elements.length;
+            return (indexOfLast + 1) + (elements.length - indexOfFirst);
         }
     }
 

@@ -7,9 +7,7 @@ import java.util.NoSuchElementException;
 public class ArrayDequeTest {
     public static void main(String[] args) {
         ArrayDeque<Integer> deque = new ArrayDeque<>();
-        System.out.println(deque.size());    // 0
-        System.out.println(deque.isEmpty()); // true
-        System.out.println();
+        printInfo(deque);
 
         try {
             deque.getFirst();
@@ -94,8 +92,14 @@ public class ArrayDequeTest {
 
     private static void printInfo(ArrayDeque<Integer> deque) {
         System.out.println("internal array: " + Arrays.toString(getInternalArray(deque)));
-        System.out.println("first: " + deque.getFirst());
-        System.out.println("last: " + deque.getLast());
+        System.out.println("size: " + deque.size());
+        System.out.println("is empty: " + deque.isEmpty());
+
+        if (!deque.isEmpty()) {
+            System.out.println("first: " + deque.getFirst());
+            System.out.println("last: " + deque.getLast());
+        }
+
         System.out.println("String representation: " + deque);
         System.out.println();
     }
