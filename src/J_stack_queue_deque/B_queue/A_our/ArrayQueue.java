@@ -52,13 +52,13 @@ public class ArrayQueue<E> implements Queue<E> {
         }
 
         if (isEmpty()) { // set front and rear to the start on first enqueue
-            indexOfFirst = 0;
+            indexOfFirst = indexOfLast = 0;
+        } else {
+            indexOfLast = (indexOfLast + 1) % elements.length;
+            // equivalent to:
+            // indexOfLast++;
+            // if (indexOfLast == elements.length) indexOfLast = 0;
         }
-
-        indexOfLast = (indexOfLast + 1) % elements.length;
-        // equivalent to:
-        // indexOfLast++;
-        // if (indexOfLast == elements.length) indexOfLast = 0;
 
         elements[indexOfLast] = element;
     }
@@ -112,7 +112,7 @@ public class ArrayQueue<E> implements Queue<E> {
         StringBuilder sb = new StringBuilder("[");
 
         for (int i = 0; i < size(); i++) {
-            sb.append(elements[(indexOfFirst + 1) % elements.length]);
+            sb.append(elements[(indexOfFirst + i) % elements.length]);
 
             if (i < size()) {
                 sb.append(", ");
