@@ -5,8 +5,20 @@ import java.util.Deque;
 import java.util.Scanner;
 
 /**
- * This program prompts for fully-parenthesized arithmetic expressions,
- * and it evaluates each expression, using two stacks.
+ * This program prompts for fully-parenthesized arithmetic expressions, and it
+ * evaluates each expression. Note: the expression must be fully-parenthesized,
+ * e.g., ((2.5+3)+4). Also, the only operators allowed are binary +, -, *, /, and ^.
+ * We do not allow unary - here.
+ *
+ * We use a variation of the "shunting-yard algorithm".
+ * The algorithm uses two stacks to store intermediate results:
+ * one stores numbers and the other stores symbols.
+ *
+ * As we see left parentheses and operators, we push them onto the symbol stack.
+ * As we see numbers, we push them onto the number stack.
+ * And when we see a right parenthesis, we know we have all the information for
+ * a subexpression, so we evaluate it, and push the result onto the number stack.
+ *
  * (From Building Java Programs ch. 14, with some modifications.)
  */
 public class Evaluator {
