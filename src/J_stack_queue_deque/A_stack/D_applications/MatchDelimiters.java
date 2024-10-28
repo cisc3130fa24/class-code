@@ -2,7 +2,6 @@ package J_stack_queue_deque.A_stack.D_applications;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.List;
 
 /**
  * A classic stack application.
@@ -40,19 +39,17 @@ public class MatchDelimiters {
      * Determines if the delimiters in the given expression are properly matched.
      */
     public static boolean isMatched(String expression) {
-        List<Character> openingDelimiters = List.of('(', '{', '[');
-        List<Character> closingDelimiters = List.of(')', '}', ']');
         Deque<Character> stack = new ArrayDeque<>(); // or: new LinkedList<>();
 
         for (char ch : expression.toCharArray()) {
-            if (openingDelimiters.contains(ch)) { // ch is a left delimiter
+            if (isOpeningDelimiter(ch)) {
                 stack.push(ch);
-            } else if (closingDelimiters.contains(ch)) { // ch is a right delimiter
+            } else if (isClosingDelimiter(ch)) {
                 if (stack.isEmpty()) {
                     return false; // nothing to match with
                 }
 
-                if (closingDelimiters.indexOf(ch) != openingDelimiters.indexOf(stack.pop())) {
+                if (!matches(stack.pop(), ch)) {
                     return false; // mismatched delimiter
                 }
             }
@@ -62,5 +59,19 @@ public class MatchDelimiters {
         }
 
         return stack.isEmpty(); // were all opening delimiters matched?
+    }
+
+    private static boolean isOpeningDelimiter(char ch) {
+        return ch == '(' || ch == '[' || ch == '{';
+    }
+
+    private static boolean isClosingDelimiter(char ch) {
+        return ch == ')' || ch == ']' || ch == '}';
+    }
+
+    private static boolean matches(char opening, char closing) {
+        return opening == '(' && closing == ')'
+               || opening == '[' && closing == ']'
+               || opening == '{' && closing == '}';
     }
 }
