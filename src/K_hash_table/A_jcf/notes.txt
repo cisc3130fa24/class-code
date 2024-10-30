@@ -1,0 +1,17 @@
+interface Set<E> extends Collection<E>:
+    add(e) doesn't add e (and returns false) if e already exists in the set
+    otherwise methods are like those of the Collection interface
+
+class HashSet<E> implements Set<E>
+    the basic implementation of Set
+    uses a "hash table" to store the elements
+    unpredictable order
+    methods add(e), remove(o), and contains(o) run in O(1) time!
+
+interface SequencedSet<E> extends Set<E>, SequencedCollection<E>
+    predictable order
+
+class LinkedHashSet<E> extends HashSet<E> implements SequencedSet<E>
+    the order of the elements is "insertion order"
+    uses a "hash table" along with a linked list to store the elements
+    methods add(e), remove(o), and contains(o) still run in O(1) time
