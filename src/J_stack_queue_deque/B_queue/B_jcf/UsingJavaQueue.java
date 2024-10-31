@@ -7,14 +7,14 @@ import java.util.Queue;
 /*
 Java Queue methods
 
-                Throws exception	Returns special value
-    Insert	    add(e)	            offer(e)
-    Remove	    remove()	        poll()
-    Examine	    element()	        peek()
+                            Throws exception	Returns special value
+    Insert ("enqueue")	    add(e)	            offer(e)
+    Remove ("dequeue")	    remove()	        poll()
+    Examine ("peek")	    element()	        peek()
 
     size(), isEmpty(), and more
 
-Two primary implementations of Deque in the JCF: LinkedList and ArrayDeque.
+Two primary implementations of Queue in the JCF: LinkedList and ArrayDeque.
 For both of these implementations, all the methods listed above run in O(1) time.
  */
 public class UsingJavaQueue {
