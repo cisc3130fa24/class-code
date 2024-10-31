@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Queue;
 
+// Optional; we did not cover this in class.
+
 /**
  * A StringSplitter breaks up a string into a sequence of tokens using
  * both whitespace and a list of special characters that are each

@@ -13,6 +13,9 @@ Java Queue methods
     Examine	    element()	        peek()
 
     size(), isEmpty(), and more
+
+Two primary implementations of Deque in the JCF: LinkedList and ArrayDeque.
+For both of these implementations, all the methods listed above run in O(1) time.
  */
 public class UsingJavaQueue {
     public static void main(String[] args) {

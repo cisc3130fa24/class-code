@@ -4,6 +4,8 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Scanner;
 
+// We did not cover the code in class, but we did trace the algorithm.
+
 /**
  * This program prompts for fully-parenthesized arithmetic expressions, and it
  * evaluates each expression. Note: the expression must be fully-parenthesized,

@@ -55,7 +55,7 @@ public class ArrayQueue<E> implements Queue<E> {
             ensureCapacity(2 * capacity() + 1);
         }
 
-        if (isEmpty()) { // set front and rear to the start on first enqueue
+        if (isEmpty()) {
             indexOfFirst = indexOfLast = 0;
         } else {
             indexOfLast = (indexOfLast + 1) % elements.length;
