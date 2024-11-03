@@ -4,7 +4,7 @@ package K_hash_table.B_our;
 
 // OPTIONAL; we did not cover in class.
 
-import java.util.*;
+import java.util.StringJoiner;
 
 public class LinearProbingHashSet<E> implements Set3130<E> {
     private Object[] table;
