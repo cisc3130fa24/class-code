@@ -1,17 +1,51 @@
-interface Set<E> extends Collection<E>:
-    add(e) doesn't add e (and returns false) if e already exists in the set
-    otherwise methods are like those of the Collection interface
+interface Set<E> extends Collection<E>
+    A Set is a Collection that does not contain any duplicate elements.
+    The add add(e) method doesn't add e, and returns false, if e is already in the set.
+    Otherwise, the methods are like those of the Collection interface.
 
 class HashSet<E> implements Set<E>
-    the basic implementation of Set
-    uses a "hash table" to store the elements
-    unpredictable order
-    methods add(e), remove(o), and contains(o) run in O(1) time!
+    This is the basic implementation of Set.
+    It uses a "hash table" to store the elements.
+    The elements have an unpredictable order.
+    Very fast: methods add(e), remove(o), and contains(o) run in O(1) time!
 
 interface SequencedSet<E> extends Set<E>, SequencedCollection<E>
-    predictable order
+    A SequencedSet is a Set (so no duplicates) whose elements have a predictable order.
 
 class LinkedHashSet<E> extends HashSet<E> implements SequencedSet<E>
-    the order of the elements is "insertion order"
-    uses a "hash table" along with a linked list to store the elements
-    methods add(e), remove(o), and contains(o) still run in O(1) time
+    The order of the elements is "insertion order."
+    It uses a "hash table" along with a linked list to store the elements.
+    Still fast: methods add(e), remove(o), and contains(o) still run in O(1) time, though a bit slower than HashSet.
+
+interface Map<K, V>
+    A mapping (association) from keys to values.
+    That is, a collection of entries, where each entry has a key and a value.
+    Duplicate keys are not allowed; duplicate values are.
+    Each key maps to exactly one value.
+    Does not extend Iterable.
+    Some methods:
+        size()
+        isEmpty()
+        put(key, value)
+        get(key)
+        getOrDefault(key, defaultValue)
+        containsKey(o)
+        containsValue(o)
+        remove(key)
+        keySet()
+        values()
+        entrySet()
+
+interface Map.Entry<K, V>
+    Nested in the Map interface.
+    Some methods:
+        getKey()
+        getValue()
+        setValue()
+
+class HashMap<K, V> implements Map<K, V>
+    The basic implementation of Map.
+
+interface SequencedMap<K, V> extends Map<K, V>
+
+class LinkedHashMap<K, V> extends HashMap<K, V> implements SequencedMap<K, V>
