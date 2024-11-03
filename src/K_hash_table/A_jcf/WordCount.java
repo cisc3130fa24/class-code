@@ -1,7 +1,10 @@
 package K_hash_table.A_jcf;
 
-import java.util.*;
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 
 public class WordCount {
     public static void main(String[] args) throws FileNotFoundException {
