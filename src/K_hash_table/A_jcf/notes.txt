@@ -29,15 +29,14 @@ interface Map<K, V>
         put(key, value)
         get(key)
         getOrDefault(key, defaultValue)
+        remove(key)
         containsKey(o)
         containsValue(o)
-        remove(key)
         keySet()
         values()
         entrySet()
 
-interface Map.Entry<K, V>
-    Nested in the Map interface.
+interface Map.Entry<K, V> (nested in the Map interface)
     Some methods:
         getKey()
         getValue()
@@ -45,6 +44,7 @@ interface Map.Entry<K, V>
 
 class HashMap<K, V> implements Map<K, V>
     The basic implementation of Map.
+    All Map methods listed above, except the last four, run in O(1) time.
 
 interface SequencedMap<K, V> extends Map<K, V>
 
