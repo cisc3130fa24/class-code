@@ -1,6 +1,6 @@
 package Z_hw6;
 
-import java.lang.reflect.Field;
+import java.lang.reflect.Field; // magic
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 
@@ -113,6 +113,13 @@ public class ArrayDequeTest {
         }
 
         System.out.println("String representation: " + deque);
+
+        System.out.println("Iterating: ");
+        for (Integer element : deque) {
+            System.out.print(element + " ");
+        }
+        System.out.println();
+
         System.out.println();
     }
 
