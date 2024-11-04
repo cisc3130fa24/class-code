@@ -66,6 +66,9 @@ public class ArrayDequeTest {
         printInfo(deque);
 
         testExceptionThrowing(deque);
+
+        deque.addFirst(10);
+        printInfo(deque);
     }
 
     private static void testExceptionThrowing(ArrayDeque<Integer> deque) {
@@ -114,7 +117,7 @@ public class ArrayDequeTest {
 
         System.out.println("String representation: " + deque);
 
-        System.out.println("Iterating: ");
+        System.out.print("Iterating: ");
         for (Integer element : deque) {
             System.out.print(element + " ");
         }
