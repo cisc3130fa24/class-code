@@ -69,6 +69,12 @@ public class ArrayDequeTest {
 
         deque.addFirst(10);
         printInfo(deque);
+
+        ArrayDeque<Integer> deque2 = new ArrayDeque<>(5);
+        deque2.addFirst(1);
+        deque2.addLast(2);
+        deque2.addFirst(3);
+        printInfo(deque2);
     }
 
     private static void testExceptionThrowing(ArrayDeque<Integer> deque) {
