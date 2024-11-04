@@ -1,11 +1,14 @@
 package Z_hw6;
 
-import java.lang.reflect.Field; // magic
+import java.lang.reflect.Field;    // magic
+import java.lang.reflect.Modifier; // magic
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 public class ArrayDequeTest {
     public static void main(String[] args) {
+        fieldTests();
+
         ArrayDeque<Integer> deque = new ArrayDeque<>();
         printInfo(deque);
 
@@ -75,6 +78,30 @@ public class ArrayDequeTest {
         deque2.addLast(2);
         deque2.addFirst(3);
         printInfo(deque2);
+    }
+
+    private static void fieldTests() {
+        Field[] fields = ArrayDeque.class.getDeclaredFields();
+        int instanceFieldCount = 0;
+        boolean foundArrayInstanceField = false;
+
+        for (Field field : fields) {
+            if (!Modifier.isStatic(field.getModifiers())) {
+                instanceFieldCount++;
+
+                if (field.getType().isArray()) {
+                    foundArrayInstanceField = true;
+                }
+            }
+        }
+
+        if (instanceFieldCount > 3) {
+            System.out.println("ArrayDeque has more than three instance fields!");
+        }
+
+        if (!foundArrayInstanceField) {
+            System.out.println("ArrayDeque doesn't have an array as an instance field!");
+        }
     }
 
     private static void testExceptionThrowing(ArrayDeque<Integer> deque) {
