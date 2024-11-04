@@ -8,6 +8,7 @@ public class ChainingHashSet<E> implements Set3130<E> {
     private Collection<E>[] buckets;
     private int size;
     private final double maxLoadFactor;
+
     private static final int DEFAULT_INITIAL_CAPACITY = 10;
     private static final double DEFAULT_MAX_LOAD_FACTOR = 0.75;
 
