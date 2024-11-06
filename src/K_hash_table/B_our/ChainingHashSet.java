@@ -7,7 +7,7 @@ import java.util.StringJoiner;
 public class ChainingHashSet<E> implements Set3130<E> {
     private Collection<E>[] buckets;
     private int size;
-    private final double maxLoadFactor;
+    private final double maxLoadFactor; // when the set becomes this full, we resize
 
     private static final int DEFAULT_INITIAL_CAPACITY = 10;
     private static final double DEFAULT_MAX_LOAD_FACTOR = 0.75;
