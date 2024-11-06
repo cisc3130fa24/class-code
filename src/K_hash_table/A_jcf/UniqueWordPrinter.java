@@ -6,7 +6,8 @@ import java.util.LinkedHashSet;
 import java.util.Scanner;
 import java.util.SequencedSet;
 
-// prints the unique words from the file, ordered by the order in which they were first seen
+// prints the unique words from the file,
+// ordered by the order in which they were first seen in the file
 public class UniqueWordPrinter {
     public static void main(String[] args) throws FileNotFoundException {
         Scanner keyboardScanner = new Scanner(System.in);

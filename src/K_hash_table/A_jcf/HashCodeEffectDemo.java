@@ -1,10 +1,6 @@
 package K_hash_table.A_jcf;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 class Name {
     private final String first, last;
@@ -32,6 +28,16 @@ class Name {
     public int hashCode() {
         return Objects.hash(first, last);
     }
+    /*
+    Recall that a hashCode() method must return equal results for equal objects.
+    If this rule is violated, and objects of the class are used as elements of a
+    (Linked)HashSet or as the keys of a (Linked)HashMap,
+    the HashSet and HashMap will not work correctly.
+
+    Additionally, a good hashCode() method endeavors to return unequal results
+    for unequal objects. If this isn't followed, HashSet and HashMap will work
+    correctly, but slowly (O(n) instead of O(1)).
+     */
 }
 
 // try running this program with Name's hashCode method commented out
