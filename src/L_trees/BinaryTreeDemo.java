@@ -70,7 +70,7 @@ public class BinaryTreeDemo {
                 postorder(node.right)
                 visit node
 
-        4. level-order:
+        4. level-order, aka breadth-first:
            level by level from top level to bottom level
            on each level, go left to right
          */

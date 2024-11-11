@@ -53,6 +53,7 @@ public class BinaryTreeMethods {
     }
 
     // this method is optional
+    // aka breadth-first traversal
     public static <E> List<List<E>> levelOrderList(BinaryTreeNode<E> root) {
         List<List<E>> result = new ArrayList<>();
         Queue<BinaryTreeNode<E>> queue = new ArrayDeque<>();
