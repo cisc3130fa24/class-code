@@ -1,6 +1,10 @@
 package K_hash_table.A_jcf;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
 class Name {
     private final String first, last;
@@ -24,10 +28,6 @@ class Name {
         }
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(first, last);
-    }
     /*
     Recall that a hashCode() method must return equal results for equal objects.
     If this rule is violated, and objects of the class are used as elements of a
@@ -38,9 +38,27 @@ class Name {
     for unequal objects. If this isn't followed, HashSet and HashMap will work
     correctly, but slowly (O(n) instead of O(1)).
      */
+
+//    @Override
+//    public int hashCode() { // satisfies the contract, but causes hash tables to work slowly
+//        return 33;
+//    }
+
+    @Override
+    public int hashCode() { // a good hashCode method
+        return Objects.hash(first, last);
+    }
 }
 
-// try running this program with Name's hashCode method commented out
+// Try running this program with Name's hashCode method commented out.
+// If hashCode is commented out, we just inherit Object's hashCode method,
+// which returns distinct integers for distinct objects. This is a problem,
+// since the Name class overrides the equals method such that two distinct
+// Names can be equal:
+//      Name n1 = new Name("A", "B"), n2 = new Name("A", "B");
+// Now n1.equals(n2) is true, but they don't have the same hash code.
+// As a result, a HashSet that uses Names as elements, or a HashMap that
+// uses Names as keys, will not work correctly.
 public class HashCodeEffectDemo {
     public static void main(String[] args) {
         Set<Name> set = new HashSet<>();
