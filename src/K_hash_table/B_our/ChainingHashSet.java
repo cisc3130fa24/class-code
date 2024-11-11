@@ -2,7 +2,6 @@ package K_hash_table.B_our;
 
 import java.util.Collection;
 import java.util.LinkedList;
-import java.util.StringJoiner;
 
 public class ChainingHashSet<E> implements Set3130<E> {
     private Collection<E>[] buckets;
@@ -86,17 +85,23 @@ public class ChainingHashSet<E> implements Set3130<E> {
 
     @Override
     public String toString() {
-        StringJoiner joiner = new StringJoiner(", ", "[", "]");
+        StringBuilder sb = new StringBuilder("[");
+        int count = 0;
 
         for (Collection<E> bucket : buckets) {
             if (bucket != null) {
                 for (E element : bucket) {
-                    joiner.add(element.toString());
+                    sb.append(element);
+                    count++;
+
+                    if (count < size) {
+                        sb.append(", ");
+                    }
                 }
             }
         }
 
-        return joiner.toString();
+        return sb.append("]").toString();
     }
 
     // given any object, returns the index at which the object belongs
@@ -104,6 +109,7 @@ public class ChainingHashSet<E> implements Set3130<E> {
         return Math.abs(o.hashCode()) % buckets.length;
     }
 
+    // returns the current load factor
     private double loadFactor() {
         return size / (double) buckets.length;
     }

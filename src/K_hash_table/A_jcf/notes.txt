@@ -56,7 +56,8 @@ class HashMap<K, V> implements Map<K, V>
     The basic implementation of Map.
     Whn using a HashMap, all Map methods listed above,
     except containsValue, run in O(1) time.
-    The last four containsValue runs in O(n) time.
+    containsValue runs in O(n) time.
+    Iterating over a map's view takes O(n) time.
 
 interface SequencedMap<K, V> extends Map<K, V>
 
