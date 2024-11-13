@@ -5,16 +5,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
 
-// methods on BinaryTreeNodes
 public class BinaryTreeMethods {
-    // TODO maxDepth / height
-
     // returns the size of the binary tree that is rooted at the given node
     public static int size(BinaryTreeNode<?> root) {
         if (root == null) {
             return 0;
         } else {
             return 1 + size(root.left) + size(root.right);
+        }
+    }
+
+    // Returns the height of the binary tree that is rooted at the given node.
+    // We consider the height of an empty (null) tree to be -1.
+    public static int height(BinaryTreeNode<?> root) {
+        if (root == null) {
+            return -1;
+        } else {
+            return 1 + Math.max(height(root.left), height(root.right));
         }
     }
 
