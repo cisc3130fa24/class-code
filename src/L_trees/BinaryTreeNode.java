@@ -1,8 +1,8 @@
 package L_trees;
 
 public class BinaryTreeNode<E> {
-    E data;
-    BinaryTreeNode<E> left, right;
+    public E data;
+    public BinaryTreeNode<E> left, right;
 
     public BinaryTreeNode(E data) {
         this(data, null, null);
