@@ -6,7 +6,7 @@ import java.util.Comparator;
 public class ConcordanceApp {
     public static void main(String[] args) throws FileNotFoundException {
         if (args.length != 1) {
-            System.err.println("usage: Concordance <filename>");
+            System.err.println("usage: ConcordanceApp <filename>");
             System.exit(1);
         }
 

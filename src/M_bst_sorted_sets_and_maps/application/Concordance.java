@@ -9,23 +9,21 @@ import java.util.SortedMap;
 import java.util.TreeMap;
 
 public class Concordance {
-    private final String filename;
     private final SortedMap<String, SequencedSet<Location>> map;
 
-	public Concordance(String filename) throws FileNotFoundException {
-		this(filename, Comparator.naturalOrder());
-	}
+    public Concordance(String filename) throws FileNotFoundException {
+        this(filename, Comparator.naturalOrder());
+    }
 
-	public Concordance(String filename, Comparator<String> comparator) throws FileNotFoundException {
-		this.filename = filename;
-		this.map = new TreeMap<>(comparator);
-        build();
-	}
+    public Concordance(String filename, Comparator<String> comparator) throws FileNotFoundException {
+        this.map = new TreeMap<>(comparator);
+        buildMap(filename);
+    }
 
-	private void build() throws FileNotFoundException {
-		WordLocationGenerator generator = new WordLocationGenerator(filename);
-	
-		for (WordLocation wordLocation : generator) {
+    private void buildMap(String filename) throws FileNotFoundException {
+        WordLocationGenerator generator = new WordLocationGenerator(filename);
+
+        for (WordLocation wordLocation : generator) {
             String word = wordLocation.word();
 
             if (!map.containsKey(word)) {
@@ -33,8 +31,8 @@ public class Concordance {
             }
 
             map.get(word).add(wordLocation.location());
-		}
-	}
+        }
+    }
 
     @Override
     public String toString() {
