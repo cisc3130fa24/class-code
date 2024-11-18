@@ -42,11 +42,13 @@ class Name implements Comparable<Name> {
     // good compareTo method
     @Override
     public int compareTo(Name other) {
-        if (!this.last.equals(other.last)) {
-            return this.last.compareTo(other.last);
-        } else { // the last names are equal
-            return this.first.compareTo(other.first);
+        int lastNameComparison = this.last.compareTo(other.last);
+
+        if (lastNameComparison != 0) { // last names are not equal
+            return lastNameComparison;
         }
+
+        return this.first.compareTo(other.first);
     }
 }
 
@@ -55,17 +57,17 @@ The elements of a TreeSet and the keys of a TreeMap
 must come from a class that implements Comparable,
 or we must provide a Comparator when creating the set/map.
 
-The ordering (whether the natural ordering or the ordering
-provided by a Comparator) should be consistent with the
-equals method. Otherwise, the set or map will behave strangely.
+The ordering (whether natural or provided by a Comparator)
+should be consistent with the equals method. Otherwise,
+the set or map will behave strangely.
 
 In order for an ordering to be consistent with the equals method,
 both of the following conditions must be met:
-1. If two objects are equal according to the equals method, then the
-   ordering must consider them to be equal (that is, the compareTo method
-   or the compare method must return 0).
-2. Also, if two objects are equal according to the ordering, then the
-   equals method must consider them to be equal.
+1. If two objects are equal according to the equals method,
+   then the ordering must consider them to be equal (that is,
+   the compareTo method or the compare method must return 0).
+2. Also, if two objects are equal according to the ordering,
+   then the equals method must consider them to be equal.
 */
 
 public class OrderingConsistentWithEqualsDemo {
@@ -88,8 +90,8 @@ public class OrderingConsistentWithEqualsDemo {
 
         // The following Comparator<String> is consistent with String's equals method:
         Comparator<String> byLengthThenAlphabetically = byLength.thenComparing(Comparator.naturalOrder());
+
         SortedSet<String> strings = new TreeSet<>(byLengthThenAlphabetically);
-        strings.add("apple");
         strings.add("fall");
         System.out.println("strings = " + strings);
         System.out.println("strings contains snow? " + strings.contains("snow"));

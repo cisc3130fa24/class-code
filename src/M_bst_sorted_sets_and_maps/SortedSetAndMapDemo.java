@@ -10,11 +10,9 @@ public class SortedSetAndMapDemo {
         set1.add("winter");
         set1.add("sky");
         System.out.println(set1); // [bird, sky, winter]
-        System.out.println(set1.first()); // bird
-        System.out.println(set1.last()); // winter
 
-        SortedSet<Scanner> scanners = new TreeSet<>();
-        scanners.add(new Scanner(System.in)); // throws ClassCastException
+        // SortedSet<Scanner> scanners = new TreeSet<>();
+        // scanners.add(new Scanner(System.in)); // throws ClassCastException
 
         // sorted set by length
         Comparator<String> byLength = new Comparator<String>() {
@@ -28,8 +26,6 @@ public class SortedSetAndMapDemo {
         set3.add("winter");
         set3.add("sky");
         System.out.println(set3); // [sky, bird, winter]
-        System.out.println(set3.first()); // sky
-        System.out.println(set3.last()); // winter
 
         // sorted set by reverse of natural order
         SortedSet<String> set2 = new TreeSet<>(Comparator.reverseOrder());
@@ -37,8 +33,6 @@ public class SortedSetAndMapDemo {
         set2.add("winter");
         set2.add("sky");
         System.out.println(set2); // [winter, sky, bird]
-        System.out.println(set2.first()); // winter
-        System.out.println(set2.last()); // bird
 
         // sorted set by length in reverse order (longest to shortest)
         SortedSet<String> set4 = new TreeSet<>(byLength.reversed());
