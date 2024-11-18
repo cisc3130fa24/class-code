@@ -10,7 +10,7 @@ import java.util.TreeMap;
 
 public class Concordance {
     private final String filename;
-    private final SortedMap<String, SequencedSet<WordLocation>> map;
+    private final SortedMap<String, SequencedSet<Location>> map;
 
 	public Concordance(String filename) throws FileNotFoundException {
 		this(filename, Comparator.naturalOrder());
@@ -32,7 +32,7 @@ public class Concordance {
                 map.put(word, new LinkedHashSet<>());
             }
 
-            map.get(word).add(wordLocation);
+            map.get(word).add(wordLocation.location());
 		}
 	}
 
@@ -42,13 +42,13 @@ public class Concordance {
 
         for (var entry : map.entrySet()) {
             String word = entry.getKey();
-            SequencedSet<WordLocation> wordLocations = entry.getValue();
+            SequencedSet<Location> locations = entry.getValue();
 
             sb.append(word).append(": ");
 
-            for (Iterator<WordLocation> iterator = wordLocations.iterator(); iterator.hasNext(); ) {
-                WordLocation wordLocation = iterator.next();
-                sb.append(wordLocation.location());
+            for (Iterator<Location> iterator = locations.iterator(); iterator.hasNext(); ) {
+                Location location = iterator.next();
+                sb.append(location);
 
                 if (iterator.hasNext()) {
                     sb.append(", ");

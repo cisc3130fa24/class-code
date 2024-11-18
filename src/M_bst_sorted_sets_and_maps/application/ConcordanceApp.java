@@ -13,9 +13,6 @@ public class ConcordanceApp {
         System.out.println("=== Natural order:");
         System.out.println(new Concordance(args[0]));
 
-        System.out.println("=== Reverse order:");
-        System.out.println(new Concordance(args[0], Comparator.reverseOrder()));
-
         System.out.println("=== Case-insensitive order:");
         System.out.println(new Concordance(args[0], String.CASE_INSENSITIVE_ORDER.thenComparing(Comparator.naturalOrder())));
     }
