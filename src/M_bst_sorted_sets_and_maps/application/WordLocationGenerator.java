@@ -8,17 +8,17 @@ import java.util.Queue;
 import java.util.Scanner;
 
 public class WordLocationGenerator implements Iterable<WordLocation> {
-    private final Queue<Character> characters = new ArrayDeque<>();
+    private final Queue<Character> queue = new ArrayDeque<>();
 
     public WordLocationGenerator(String filename) throws FileNotFoundException {
         Scanner scanner = new Scanner(new File(filename));
 
         while (scanner.hasNextLine()) {
             for (char ch : scanner.nextLine().toCharArray()) {
-                characters.add(ch);
+                queue.add(ch);
             }
 
-            characters.add('\n');
+            queue.add('\n');
         }
     }
 
@@ -50,8 +50,8 @@ public class WordLocationGenerator implements Iterable<WordLocation> {
             StringBuilder word = new StringBuilder();
 
             // skip non-letters
-            while (!characters.isEmpty() && !Character.isLetter(characters.peek())) {
-                if (characters.remove() == '\n') {
+            while (!queue.isEmpty() && !Character.isLetter(queue.peek())) {
+                if (queue.remove() == '\n') {
                     lineNumber++;
                     columnNumber = 1;
                 } else {
@@ -60,8 +60,8 @@ public class WordLocationGenerator implements Iterable<WordLocation> {
             }
 
             // read letters and add them to the word
-            while (!characters.isEmpty() && Character.isLetter(characters.peek())) {
-                word.append(characters.remove());
+            while (!queue.isEmpty() && Character.isLetter(queue.peek())) {
+                word.append(queue.remove());
                 columnNumber++;
             }
 

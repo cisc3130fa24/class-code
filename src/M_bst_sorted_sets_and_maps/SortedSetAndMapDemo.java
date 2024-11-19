@@ -55,8 +55,8 @@ public class SortedSetAndMapDemo {
         map.put("bird", 3);
         map.put("winter", 5);
         map.put("sky", 7);
-        for (String key : map.keySet()) {
-            System.out.println(key + " " + map.get(key));
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            System.out.println(entry.getKey() + " " + entry.getValue());
         }
         // bird 3
         // sky 7
