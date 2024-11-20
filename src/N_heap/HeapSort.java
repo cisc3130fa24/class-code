@@ -2,35 +2,26 @@ package N_heap;
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
 public class HeapSort {
-    public static <E extends Comparable<E>> void heapSort(E[] list) {
-        heapSort(list, Comparator.naturalOrder());
-    }
-
-    public static <E> void heapSort(E[] list, Comparator<E> c) {
-        MaxHeap<E> heap = new MaxHeap<>(c);
-
-        // Add elements to the heap: O(n log n)
-        for (E e : list) {
-            heap.add(e);
-        }
-
-        // Remove elements from the heap: O(n log n)
-        for (int i = list.length - 1; i >= 0; i--) {
-            list[i] = heap.remove();
-        }
-    }
-    // overall running time: O(n log n)
-
     public static void main(String[] args) {
-        Integer[] arr = {-44, 3, 3, 1, -4, 0, 1, 4, 2, 5};
-        System.out.println("original array: " + Arrays.toString(arr));
+        int[] a = {0, 65, 50, 20, 90, 44, 60, 80, 70, 99, 10};
+        heapSort(a);
+        System.out.println(Arrays.toString(a));
+    }
 
-        heapSort(arr);
-        System.out.println("after sorting using natural order: " + Arrays.toString(arr));
+    // O(n log n)
+    public static void heapSort(int[] a) {
+        Queue<Integer> pq = new PriorityQueue<>();
 
-        heapSort(arr, Comparator.reverseOrder());
-        System.out.println("after sorting using reverse of natural order: " + Arrays.toString(arr));
+        for (int n : a) {
+            pq.add(n);
+        }
+
+        for (int i = 0; i < a.length; i++) {
+            a[i] = pq.remove();
+        }
     }
 }
