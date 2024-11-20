@@ -32,9 +32,7 @@ public class MaxHeap<E> {
 
             // Swap if the current node is greater than its parent
             if (comparator.compare(elements.get(currentIndex), elements.get(parentIndex)) > 0) {
-                E temp = elements.get(currentIndex);
-                elements.set(currentIndex, elements.get(parentIndex));
-                elements.set(parentIndex, temp);
+                Collections.swap(elements, currentIndex, parentIndex); // O(1)
             } else {
                 break; // the tree is a heap now
             }
@@ -63,7 +61,7 @@ public class MaxHeap<E> {
 
             // Find the maximum between two children
             int maxIndex = leftChildIndex; // guess that the left child is max
-            if (rightChildIndex < elements.size()) {
+            if (rightChildIndex < elements.size()) { // if there is a right child
                 if (comparator.compare(elements.get(maxIndex), elements.get(rightChildIndex)) < 0) {
                     // if the left child is less than the right, then right is max
                     maxIndex = rightChildIndex;

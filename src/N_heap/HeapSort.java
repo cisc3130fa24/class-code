@@ -5,6 +5,8 @@ import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
+// we didn't cover this in class
+
 public class HeapSort {
     public static void main(String[] args) {
         int[] a = {0, 65, 50, 20, 90, 44, 60, 80, 70, 99, 10};
