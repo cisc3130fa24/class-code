@@ -61,16 +61,16 @@ public class Main {
         return node.left == null && node.right == null;
     }
 
-    public static boolean isComplete(BinaryTreeNode<?> root) {
+    public static boolean isProper(BinaryTreeNode<?> root) {
         if (root == null) {
             return true;
         } else {
-            return hasExactlyOneChild(root) && isComplete(root.left) && isComplete(root.right);
+            return hasZeroOrTwoChildren(root) && isProper(root.left) && isProper(root.right);
         }
     }
 
-    private static boolean hasExactlyOneChild(BinaryTreeNode<?> node) {
-        return node.left == null && node.right != null || node.left != null && node.right == null;
+    private static boolean hasZeroOrTwoChildren(BinaryTreeNode<?> node) {
+        return (node.left == null) == (node.right == null);
     }
 
     public static <E> boolean contains(BinaryTreeNode<E> root, E element) {
