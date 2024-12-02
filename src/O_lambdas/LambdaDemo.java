@@ -31,11 +31,18 @@ Simplifications:
 
 The body of an ideal lambda expression consists of just a single statement.
 
-Method reference: a shorthand way of writing a lambda expression
-that simply calls another method with its parameters.
+When a lambda expression simply calls another method, it can be
+written in a shorthand way known as a method reference.
 Examples:
     (x, y) -> Math.max(x, y) simplifies to: Math::max
 General syntax: method location, two colons, method name.
+
+More details: four kinds of method references:
+Name	    Syntax	                    Lambda equivalent
+Static	    RefType::staticMethod	    (args) -> RefType.staticMethod(args)
+Bound	    expr::instanceMethod	    (args) -> expr.instanceMethod(args)
+Unbound	    RefType::instanceMethod	    (arg0, rest) -> arg0.instanceMethod(rest)
+Constructor	ClassName::new	            (args) -> new ClassName(args)
  */
 
 public class LambdaDemo {
