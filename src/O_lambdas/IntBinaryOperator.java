@@ -21,7 +21,7 @@ whether this interface is truly a functional interface.
 
 @FunctionalInterface
 public interface IntBinaryOperator {
-    int apply(int a, int b);
+    int apply(int a, int b); // functional method
 
     String toString();
 
@@ -38,6 +38,13 @@ public interface IntBinaryOperator {
 //    @Override
 //    public int apply(int a, int b) {
 //        return a + b;
+//    }
+//}
+
+//class Multiplication implements IntBinaryOperator {
+//    @Override
+//    public int apply(int a, int b) {
+//        return a * b;
 //    }
 //}
 

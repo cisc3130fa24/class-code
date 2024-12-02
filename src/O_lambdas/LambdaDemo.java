@@ -40,15 +40,29 @@ General syntax: method location, two colons, method name.
 More details: four kinds of method references:
 Name	    Syntax	                    Lambda equivalent
 Static	    RefType::staticMethod	    (args) -> RefType.staticMethod(args)
+            Math::max                   (x, y) -> Math.max(x, y)
 Bound	    expr::instanceMethod	    (args) -> expr.instanceMethod(args)
+            "hello"::equals             (s) -> "hello".equals(s)
 Unbound	    RefType::instanceMethod	    (arg0, rest) -> arg0.instanceMethod(rest)
+            String::length              (s) -> s.length()
 Constructor	ClassName::new	            (args) -> new ClassName(args)
  */
 
 public class LambdaDemo {
     public static void main(String[] args) {
-        int[] arr = {5, 3, 7, 1};
+        /*
+        IntBinaryOperator addition = new IntBinaryOperator() {
+            @Override
+            public int apply(int a, int b) {
+                return a + b;
+            }
+        };
+         */
+
         IntBinaryOperator addition = (x, y) -> x + y;
+        System.out.println(addition.apply(6, 8));
+
+        int[] arr = {5, 3, 7, 1};
         int sum = reduce(arr, 0, addition);
         System.out.println("sum = " + sum);
 
@@ -66,15 +80,12 @@ public class LambdaDemo {
         printer.accept("hello again");
     }
 
-    // identity for addition:
-    // Number x such that x + a = a. So x = 0
-    // identity for max:
-    // number x such that Math.max(x, a) = a. So x = Integer.MIN_VALUE
+    // sum, product, max
 
     // result:
     // element:
-    public static int reduce(int[] arr, int identity, IntBinaryOperator operator) {
-        int result = identity;
+    public static int reduce(int[] arr, int initial, IntBinaryOperator operator) {
+        int result = initial;
 
         for (int element : arr) {
             result = operator.apply(result, element);
