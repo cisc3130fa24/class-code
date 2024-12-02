@@ -73,17 +73,46 @@ public class LambdaDemo {
         int max = reduce(arr, Integer.MIN_VALUE, Math::max);
         System.out.println("max = " + max);
 
-        StringConsumer twicePrinter = s -> System.out.println(s + s);
+        StringConsumer twicePrinter = s -> System.out.println(s + " " + s);
         twicePrinter.accept("hello");
 
+        // StringConsumer printer = s -> System.out.println(s);
         StringConsumer printer = System.out::println;
         printer.accept("hello again");
     }
 
-    // sum, product, max
+    /*
+    public static int sum(int[] arr) {
+        int result = 0;
 
-    // result:
-    // element:
+        for (int element : arr) {
+            result = result + element;
+        }
+
+        return result;
+    }
+
+    public static int product(int[] arr) {
+        int result = 1;
+
+        for (int element : arr) {
+            result = result * element;
+        }
+
+        return result;
+    }
+
+    public static int max(int[] arr) {
+        int result = Integer.MIN_VALUE;
+
+        for (int element : arr) {
+            result = Math.max(result, element);
+        }
+
+        return result;
+    }
+     */
+
     public static int reduce(int[] arr, int initial, IntBinaryOperator operator) {
         int result = initial;
 
