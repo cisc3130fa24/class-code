@@ -46,6 +46,7 @@ Bound	    expr::instanceMethod	    (args) -> expr.instanceMethod(args)
 Unbound	    RefType::instanceMethod	    (arg0, rest) -> arg0.instanceMethod(rest)
             String::length              (s) -> s.length()
 Constructor	ClassName::new	            (args) -> new ClassName(args)
+            ArrayList::new              () -> new ArrayList()
  */
 
 public class LambdaDemo {
