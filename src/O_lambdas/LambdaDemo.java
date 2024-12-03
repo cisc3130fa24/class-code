@@ -1,12 +1,5 @@
 package O_lambdas;
 
-//class AdditionOperator implements IntBinaryOperator {
-//    @Override
-//    public int apply(int a, int b) {
-//        return a + b;
-//    }
-//}
-
 /*
 Syntax of lambda expressions:
 
