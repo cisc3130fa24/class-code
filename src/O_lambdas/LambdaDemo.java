@@ -35,11 +35,14 @@ Name	    Syntax	                    Lambda equivalent
 Static	    RefType::staticMethod	    (args) -> RefType.staticMethod(args)
             Math::max                   (x, y) -> Math.max(x, y)
 Bound	    expr::instanceMethod	    (args) -> expr.instanceMethod(args)
-            "hello"::equals             (s) -> "hello".equals(s)
+            "hello"::equals             s -> "hello".equals(s)
+            System.out::println         s -> System.out.println(s)
 Unbound	    RefType::instanceMethod	    (arg0, rest) -> arg0.instanceMethod(rest)
-            String::length              (s) -> s.length()
+            String::indexOf             (s, ch) -> s.indexOf(ch)
+            String::length              s -> s.length()
 Constructor	ClassName::new	            (args) -> new ClassName(args)
-            ArrayList::new              () -> new ArrayList()
+            Point::new                  (x, y) -> new Point(x, y)
+            ArrayList::new              () -> new ArrayList<>()
  */
 
 public class LambdaDemo {
