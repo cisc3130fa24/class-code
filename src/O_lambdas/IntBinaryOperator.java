@@ -2,13 +2,13 @@ package O_lambdas;
 
 /*
 Functional interface: an interface with exactly one method that
-needs to be implemented by implementors.
+needs to be overridden by implementors.
 
-Static and default methods don't have to be implemented by implementors.
+Static and default methods don't have to be overridden by implementors.
 Additionally, methods found in the Object class (such as toString and equals)
-also don't need to be implemented by implementors.
+also don't need to be overridden by implementors.
 
-The single abstract method that must be implemented is known as the
+The single abstract method that must be overridden is known as the
 functional method of the functional interface.
 
 A functional interface can be implemented by a class, as usual. But it can
