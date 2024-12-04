@@ -1,0 +1,21 @@
+interface	        functional method	        example lambda
+
+Comparator<T>	    int compare(T t1, T t2)	    (s1, s2) -> s1.compareTo(s2)
+
+Consumer<T>	        void accept(T t)	        s -> System.out.println(s)
+
+BiConsumer<T, U>	void accept(T t, U u)	    (s, i) -> System.out.println(s + " " + i)
+
+UnaryOperator<T>	T apply(T t)	            s -> s.toUpperCase()
+
+BinaryOperator<T>	T apply(T t1, T t2)	        (a, b) -> a * b
+
+Predicate<T>	    boolean test(T t)	        s -> s.isEmpty()
+
+Function<T, R>	    R apply(T t)	            i -> Math.sqrt(i)
+
+Supplier<T>	        T get()	                    () -> Math.random()
+
+For most of the above, there are primitive specializations for int, long, and double.
+For example,
+ToIntFunction<T>    int applyAsInt(T value)     s -> s.length()

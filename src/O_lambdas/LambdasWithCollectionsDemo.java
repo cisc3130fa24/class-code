@@ -5,20 +5,20 @@ import java.util.function.Predicate;
 
 public class LambdasWithCollectionsDemo {
     public static void main(String[] args) {
-        forEachDemo();
-        forEachWithMapDemo();
+        forEachDemoIterable();
+        forEachDemoMap();
         removeIfDemo();
         replaceAllDemo();
     }
 
     // demonstrates Iterable's forEach(Consumer action) method
-    public static void forEachDemo() {
+    public static void forEachDemoIterable() {
         List<String> list = List.of("a", "b", "c");
         list.forEach(System.out::println);
     }
 
     // demonstrates Map's forEach(BiConsumer action) method
-    public static void forEachWithMapDemo() {
+    public static void forEachDemoMap() {
         Map<Integer, String> map = Map.of(4, "a", 6, "b", 2, "c");
         map.forEach((key, val) -> System.out.println(key + " ---- " + val));
     }
