@@ -44,8 +44,7 @@ public class MoreComparatorExamples {
 
         Collections.shuffle(employees);
         System.out.println("Employees sorted by salary:");
-        // employees.sort((emp1, emp2) -> Integer.compare(emp1.getSalary(), emp2.getSalary()));
-        employees.sort(Comparator.comparingInt(Employee::salary));
+        employees.sort(Comparator.comparing(Employee::salary));
         employees.forEach(System.out::println);
         System.out.println();
 
@@ -58,14 +57,14 @@ public class MoreComparatorExamples {
         //     return emp1.id().compareTo(emp2.id());
         //   }
         // }));
-        employees.sort(Comparator.comparingInt(Employee::salary).thenComparing(Employee::id));
+        employees.sort(Comparator.comparing(Employee::salary).thenComparing(Employee::id));
         employees.forEach(System.out::println);
         System.out.println();
 
         Collections.shuffle(employees);
         System.out.println("Employees sorted by salary then by first name and then by last name:");
         Comparator<Employee> bySalaryThenFirstThenLast =
-                Comparator.comparingInt(Employee::salary)
+                Comparator.comparing(Employee::salary)
                         .thenComparing(emp -> emp.name().first())
                         .thenComparing(emp -> emp.name().last());
         employees.sort(bySalaryThenFirstThenLast);

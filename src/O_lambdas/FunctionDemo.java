@@ -7,13 +7,13 @@ public class FunctionDemo {
         Function<String, String> secondHalf = s -> s.substring(s.length() / 2);
         System.out.println(secondHalf.apply("goodbye!"));
 
-        Function<String, Integer> length = String::length;
-        System.out.println(length.apply("bye!")); // 4
+        Function<String, Integer> lengthGetter = String::length;
+        System.out.println(lengthGetter.apply("bye!")); // 4
 
-        Function<Integer, Double> sqrt = Math::sqrt;
-        System.out.println(sqrt.apply(4)); // 2.0
+        Function<Integer, Double> squareRooter = Math::sqrt;
+        System.out.println(squareRooter.apply(4)); // 2.0
 
-        Function<String, Double> sqrtHalfLength = secondHalf.andThen(length).andThen(sqrt);
+        Function<String, Double> sqrtHalfLength = secondHalf.andThen(lengthGetter).andThen(squareRooter);
         System.out.println(sqrtHalfLength.apply("goodbye!")); // 2.0
 
         Integer[] integers = {4, 16, 9};

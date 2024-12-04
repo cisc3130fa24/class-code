@@ -20,7 +20,7 @@ public class LambdasWithCollectionsDemo {
     // demonstrates Map's forEach(BiConsumer action) method
     public static void forEachDemoMap() {
         Map<Integer, String> map = Map.of(4, "a", 6, "b", 2, "c");
-        map.forEach((key, val) -> System.out.println(key + " ---- " + val));
+        map.forEach((i, s) -> System.out.println(i + " ---- " + s));
     }
 
     // demonstrates Collection's removeIf(Predicate filter) method
@@ -30,14 +30,10 @@ public class LambdasWithCollectionsDemo {
         System.out.println(set); // [charlie]
 
         List<Integer> list = new ArrayList<>(List.of(-3, -2, -1, 0, 1, 2, 3));
-
         Predicate<Integer> isPositive = x -> x > 0;
         Predicate<Integer> isEven = x -> x % 2 == 0;
-        // Predicate<Integer> isPositiveOrEven = x -> x > 0 || x % 2 == 0;
         Predicate<Integer> isPositiveOrEven = isPositive.or(isEven);
-
         list.removeIf(isPositiveOrEven);
-
         System.out.println(list); // [-3, -1]
     }
 
@@ -46,8 +42,10 @@ public class LambdasWithCollectionsDemo {
         List<String> list = new ArrayList<>(List.of("one", "two"));
         list.replaceAll(s -> s + " more");
         System.out.println(list); // [one more, two more]
+
         list.replaceAll(String::toUpperCase);
         System.out.println(list); // [ONE MORE, TWO MORE]
+
         list.replaceAll(s -> "a");
         System.out.println(list); // [a, a]
     }

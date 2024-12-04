@@ -4,10 +4,10 @@ import java.util.function.Predicate;
 
 public class PredicateDemo {
     public static void main(String[] args) {
-        // Predicate<String> isEmpty = s -> s.isEmpty();
-        Predicate<String> isEmpty = String::isEmpty;
-        System.out.println(isEmpty.test("a")); // false
-        System.out.println(isEmpty.test("")); // true
+        // Predicate<String> emptinessTester = s -> s.isEmpty();
+        Predicate<String> emptinessTester = String::isEmpty;
+        System.out.println(emptinessTester.test("a")); // false
+        System.out.println(emptinessTester.test("")); // true
 
         Predicate<Integer> isPositive = x -> x > 0;
 
@@ -23,6 +23,7 @@ public class PredicateDemo {
 
         Predicate<Integer> alwaysTrue = x -> true;
 
+        // Predicate<Integer> alwaysFalse = x -> false;
         Predicate<Integer> alwaysFalse = alwaysTrue.negate();
 
         Predicate<Integer> isOdd = Predicate.not(isEven);
