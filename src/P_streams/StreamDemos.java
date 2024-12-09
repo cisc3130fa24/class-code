@@ -5,9 +5,9 @@ import java.util.stream.Collectors;
 
 /*
 A stream pipeline has three parts:
-- source, such as a collection (a pipeline has exactly one)
-- intermediate operations (as many as you want, even none)
-- terminal operation (must have exactly one)
+- exactly one source, such as a collection
+- any number of intermediate operations
+- exactly one terminal operation
 
 We use streams to construct a "pipeline" through which elements flow
 - from the source
@@ -16,14 +16,16 @@ We use streams to construct a "pipeline" through which elements flow
 
 A stream does not modify the contents of the source.
 
+A stream does not store elements. Instead, it moves elements from a source through a pipeline and processes them.
+
 Each intermediate operation returns a new Stream, so operations can be chained.
 
-Intermediate operations: filter, map, mapToInt, distinct, sorted
+Some intermediate operations: filter, map, mapToInt, distinct, sorted
 
-Terminal operations: count, max, toList, average, sum, forEach, findAny, collect
+Some terminal operations: count, max, toList, average, sum, forEach, findAny, collect
 
 The elements of a stream are not processed until a terminal operation is invoked.
-At that point, the elements are generated, the intermediate operations are
+At that point, the source produces the necessary elements, the intermediate operations are
 performed, and the terminal operation returns a result.
 This allows for the source of a stream to be potentially infinite.
 For example, new Random().ints() creates an infinite stream. But no elements are
@@ -32,7 +34,7 @@ actually generated until the terminal operation is invoked. So, for example,
 creates a List<Integer> containing 10 distinct random integers, and it does not
 take infinite time to complete.
 
-Optional: an object that is either empty or contains a value.
+An Optional object: an object that is either empty or contains a value.
 Like a collection that contains at most 1 element.
 Used as the return type of methods like max that can't always
 return a value, since the stream might be empty.
@@ -41,21 +43,79 @@ Stream is a generic interface, so we can have Stream<String>, Stream<Person>, St
 
 There are also primitive specializations for int, long and double: IntStream, LongStream, and DoubleStream.
 
-To convert from IntStream to Stream<Integer> (for example) use the boxed() method of IntStream, which returns a Stream<Integer>.
-To covert from a primitive stream to a Stream<T>, where T is any type, use the mapToObj intermediate operation.
-
-To convert from Stream<T> (where T is String or Integer, etc.) to IntStream (for example) use the mapToInt method, which takes a function that maps objects of type T to ints.
-
 Just as there are primitive specializations for Stream<Integer>, etc., so too are there
-primitive specializations for Optional<Integer>: OptionalInt, OptionalLong, OptionalDouble
+primitive specializations for Optional<Integer> etc.: OptionalInt, OptionalLong, OptionalDouble.
 
+Creating a Stream<T> from a source:
+- Stream.of(T... values) returns a Stream<T>
+- Arrays.stream(T[] array) returns a Stream<T>
+- If coll is a Collection<E>, coll.stream() returns a Stream<E> of the collection's elements
+- If filename is the name of a file, Files.lines(Paths.get(filename)) returns a Stream<String> of all the lines in the file
 
+Creating an IntStream from a source:
+- IntStream.of(int... values)
+- Arrays.steam(int[] array)
+- IntStream.range(int startInclusive, int endExclusive)
+- If rand refers to a Random object:
+    - rand.ints() returns an infinite stream of random ints
+    - rand.ints(min, max) returns an infinite stream of random ints between min (inclusive) and max (exclusive)
+
+Intermediate stream operations of all streams:
+- filter(predicate)
+- map(function)
+- distinct()
+- sorted()
+- limit(size)
+
+Intermediate operations specific to Stream<T>:
+- sorted(comparator)
+- mapToInt(function) [returns an IntStream]
+- mapToDouble(function) [returns a DoubleStream]
+- mapToLong(function) [returns a LongStream]
+
+Intermediate operations specific to IntStream, DoubleStream, and LongStream:
+- boxed() [returns a Stream<Integer> for an IntStream, a Stream<Double> for a DoubleStream, or a Stream<Long> for a LongStream]
+- mapToObj(function) [returns a Stream]
+
+Terminal operations of all streams:
+- count()
+- findAny()
+- forEach(consumer)
+- reduce(initial, binaryOperator)
+- reduce(binaryOperator) [returns an optional]
+
+Terminal operations specific to Stream<T>:
+- toList()
+- min(comparator) [returns an optional]
+- max(comparator) [returns an optional]
+- collect(collector)
+
+Terminal operations specific to IntStream, DoubleStream, and LongStream:
+- sum()
+- average() [returns an optional]
+- min() [returns an optional]
+- max() [returns an optional]
+
+The collect method takes a Collector specifying how the elements of the stream should be collected.
+To easily create a Collector, we can use the following methods of the Collectors class:
+- toList() [collect(Collectors.toList()) is equivalent to toList()]
+- toSet()
+- joining() [concatenates the elements into a String]
+- joining(String delimiter) [like joining(), but places the delimiter between elements]
+- groupingBy(function) [returns a Map<K, List<T>>, using the function to classify the elements]
+
+Some terminal operations return an Optional (or OptionalInt, OptionalDouble, or OptionalLong).
+Here are some methods of all optionals:
+orElse(other)
+orElseThrow()
+ifPresent(consumer)
  */
 
 public class StreamDemos {
     public static void main(String[] args) {
         List<String> strings = List.of(
-                "chocolate", "coffee", "tea", "", "biscuit", "muffin", "doughnut", "tea", "cookie"
+                "chocolate", "coffee", "tea", "", "biscuit",
+                "muffin", "doughnut", "tea", "cookie"
         );
 
         // count strings starting with 'c'
