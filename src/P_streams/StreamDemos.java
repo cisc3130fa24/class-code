@@ -9,29 +9,47 @@ A stream pipeline has three parts:
 - intermediate operations (as many as you want, even none)
 - terminal operation (must have exactly one)
 
-We use streams to construct a "pipeline" through which elements flow from the source
-through the intermediate operations to the terminal operation.
+We use streams to construct a "pipeline" through which elements flow
+- from the source
+- through the intermediate operations
+- to the terminal operation.
 
 A stream does not modify the contents of the source.
 
-The intermediate operations (like filter, map, etc.) each returns a new Stream.
+Each intermediate operation returns a new Stream, so operations can be chained.
 
 Intermediate operations: filter, map, mapToInt, distinct, sorted
 
 Terminal operations: count, max, toList, average, sum, forEach, findAny, collect
 
-Optional: is either empty or contains a value.
+The elements of a stream are not processed until a terminal operation is invoked.
+At that point, the elements are generated, the intermediate operations are
+performed, and the terminal operation returns a result.
+This allows for the source of a stream to be potentially infinite.
+For example, new Random().ints() creates an infinite stream. But no elements are
+actually generated until the terminal operation is invoked. So, for example,
+    new Random().ints().distinct().limit(10).boxed().toList()
+creates a List<Integer> containing 10 distinct random integers, and it does not
+take infinite time to complete.
+
+Optional: an object that is either empty or contains a value.
+Like a collection that contains at most 1 element.
+Used as the return type of methods like max that can't always
+return a value, since the stream might be empty.
 
 Stream is a generic interface, so we can have Stream<String>, Stream<Person>, Stream<Integer>.
 
 There are also primitive specializations for int, long and double: IntStream, LongStream, and DoubleStream.
 
 To convert from IntStream to Stream<Integer> (for example) use the boxed() method of IntStream, which returns a Stream<Integer>.
+To covert from a primitive stream to a Stream<T>, where T is any type, use the mapToObj intermediate operation.
 
 To convert from Stream<T> (where T is String or Integer, etc.) to IntStream (for example) use the mapToInt method, which takes a function that maps objects of type T to ints.
 
 Just as there are primitive specializations for Stream<Integer>, etc., so too are there
 primitive specializations for Optional<Integer>: OptionalInt, OptionalLong, OptionalDouble
+
+
  */
 
 public class StreamDemos {
