@@ -113,38 +113,38 @@ ifPresent(consumer)
 
 public class StreamDemos {
     public static void main(String[] args) {
-        List<String> strings = List.of(
+        List<String> list = List.of(
                 "chocolate", "coffee", "tea", "", "biscuit",
                 "muffin", "doughnut", "tea", "cookie"
         );
 
         // print each distinct string
-        strings.stream()
+        list.stream()
                 .distinct()
                 .forEach(System.out::println);
 
         // print number of distinct strings
-        System.out.println("number of distinct strings: " + strings.stream().distinct().count());
+        System.out.println("number of distinct strings: " + list.stream().distinct().count());
 
         // count strings starting with 'c'
-        long numStartingWithC = strings.stream() // Stream<String>
+        long numStartingWithC = list.stream() // Stream<String>
                 .filter(s -> s.startsWith("c"))  // Stream<String>
                 .count(); // long
         System.out.println("numStartingWithC = " + numStartingWithC);
 
         // print in uppercase each string starting with 'c'
-        strings.stream()
+        list.stream()
                 .filter(s -> s.startsWith("c"))
                 .map(String::toUpperCase)
                 .forEach(System.out::println);
 
         // print strings sorted by length, then alphabetically
-        strings.stream()
+        list.stream()
                 .sorted(Comparator.comparing(String::length).thenComparing(Comparator.naturalOrder()))
                 .forEach(System.out::println);
 
         // get sorted list of distinct strings with length <= 6
-        List<String> shortDistinctSortedStrings = strings.stream()
+        List<String> shortDistinctSortedStrings = list.stream()
                 .filter(s -> s.length() <= 6)
                 .distinct()
                 .sorted()
@@ -152,7 +152,7 @@ public class StreamDemos {
         System.out.println("shortDistinctSortedStrings = " + shortDistinctSortedStrings);
 
         // get sorted list of distinct first characters of the strings
-        List<Character> firstCharacters = strings.stream()
+        List<Character> firstCharacters = list.stream()
                 .filter(s -> !s.isEmpty()) // Stream<String>, no empty Strings
                 .map(s -> s.charAt(0))
                 .distinct() // Stream<Character>, but without duplicates
@@ -161,43 +161,43 @@ public class StreamDemos {
         System.out.println("firstCharacters = " + firstCharacters);
 
         // find any longest string; print if present
-        Optional<String> longestString = strings.stream() // Stream<String>
+        Optional<String> longestString = list.stream() // Stream<String>
                 .max(Comparator.comparing(String::length)); // Optional<String>
         longestString.ifPresent(System.out::println); // will print the max if there is one, otherwise does nothing
 
         // print any longest string, if present
-        strings.stream()
+        list.stream()
                 .max(Comparator.comparing(String::length))
                 .ifPresent(System.out::println);
 
-        // print any string of length 6. if there are multiple ones, print any;
-        // if there are none, print nothing
-        strings.stream()
-                .filter(s -> s.length() == 6) // Stream<String>
-                .findAny()
-                .ifPresent(System.out::println);
-
         // find any longest string starting with 'c'
-        Optional<String> longestStringStartingWithC = strings.stream() // Stream<String>
+        Optional<String> longestStringStartingWithC = list.stream() // Stream<String>
                 .filter(s -> s.startsWith("c")) // Stream<String>
                 .max(Comparator.comparing(String::length));
         System.out.println(longestStringStartingWithC.orElse("no longest string starting with 'c' available"));
 
+        // print any string of length 6. if there are multiple ones, print any;
+        // if there are none, print nothing
+        list.stream()
+                .filter(s -> s.length() == 6) // Stream<String>
+                .findAny()
+                .ifPresent(System.out::println);
+
         // get sum of lengths of all strings
-        long sumOfLengths = strings.stream()
+        long sumOfLengths = list.stream()
                 .mapToInt(String::length)
                 .sum();
         System.out.println("sumOfLengths = " + sumOfLengths);
 
         // find length of the longest string
-        OptionalInt lengthOfLongestString = strings.stream() // Stream<String>
+        OptionalInt lengthOfLongestString = list.stream() // Stream<String>
                 // .map(String::length) // Stream<Integer>, but we want to be able to call no-arg max method
                 .mapToInt(String::length) // IntStream
                 .max();
         System.out.println("lengthOfLongestString = " + lengthOfLongestString.orElseThrow());
 
         // get average length of strings that start with 'c'
-        OptionalDouble averageLengthOfStringsStartingWithC = strings.stream()
+        OptionalDouble averageLengthOfStringsStartingWithC = list.stream()
                 .filter(s -> s.startsWith("c")) // Stream<String>
                 .mapToInt(String::length)
                 .average();
@@ -206,18 +206,18 @@ public class StreamDemos {
         // group the strings into lists by their lengths:
         // have one List of Strings of length 0,
         // another List of Strings of length 6, etc.
-        Map<Integer, List<String>> map1 = strings.stream()
+        Map<Integer, List<String>> map1 = list.stream()
                 .collect(Collectors.groupingBy(String::length));
         map1.forEach((len, wordList) -> System.out.println(len + ": " + wordList));
 
         // OPTIONAL:
         // group the strings into sets by their lengths
-        Map<Integer, Set<String>> map2 = strings.stream().collect(Collectors.groupingBy(String::length, Collectors.toSet()));
+        Map<Integer, Set<String>> map2 = list.stream().collect(Collectors.groupingBy(String::length, Collectors.toSet()));
         map2.forEach((len, wordSet) -> System.out.println(len + ": " + wordSet));
 
         // OPTIONAL:
         // create a map from string lengths to the number of strings of those lengths (for length 6 there are 3 strings, etc.)
-        Map<Integer, Long> map3 = strings.stream().collect(Collectors.groupingBy(String::length, Collectors.counting()));
+        Map<Integer, Long> map3 = list.stream().collect(Collectors.groupingBy(String::length, Collectors.counting()));
         map3.forEach((len, count) -> System.out.println(len + ": " + count));
     }
 }
