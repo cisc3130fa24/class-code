@@ -79,10 +79,10 @@ Intermediate operations specific to IntStream, DoubleStream, and LongStream:
 
 Terminal operations of all streams:
 - count()
-- findAny()
 - forEach(consumer)
 - reduce(initial, binaryOperator)
 - reduce(binaryOperator) [returns an optional]
+- findAny() [returns an optional]
 
 Terminal operations specific to Stream<T>:
 - toList()
@@ -118,56 +118,6 @@ public class StreamDemos {
                 "muffin", "doughnut", "tea", "cookie"
         );
 
-        // count strings starting with 'c'
-        long numStartingWithC = strings.stream() // Stream<String>
-                .filter(s -> s.startsWith("c"))  // Stream<String>
-                .count(); // long
-        System.out.println("numStartingWithC = " + numStartingWithC);
-
-        // find any longest string; print if present
-        Optional<String> longestString = strings.stream() // Stream<String>
-                .max(Comparator.comparing(String::length)); // Optional<String>
-        longestString.ifPresent(System.out::println); // will print the max if there is one, otherwise does nothing
-
-        // print any longest string, if present
-        strings.stream()
-                .max(Comparator.comparing(String::length))
-                .ifPresent(System.out::println);
-
-        // find any longest string starting with 'c'
-        Optional<String> longestStringStartingWithC = strings.stream() // Stream<String>
-                .filter(s -> s.startsWith("c")) // Stream<String>
-                .max(Comparator.comparing(String::length));
-        System.out.println(longestStringStartingWithC.orElse("no longest string starting with 'c' available"));
-
-        // find length of the longest string
-        OptionalInt lengthOfLongestString = strings.stream() // Stream<String>
-                // .map(String::length) // Stream<Integer>, but we want to be able to call no-arg max method
-                .mapToInt(String::length) // IntStream
-                .max();
-        System.out.println("lengthOfLongestString = " + lengthOfLongestString.orElseThrow());
-
-        // get sorted list of distinct strings with length <= 6; then print the list
-        List<String> shortDistinctSortedStrings = strings.stream()
-                .filter(s -> s.length() <= 6)
-                .distinct()
-                .sorted()
-                .toList();
-        shortDistinctSortedStrings.forEach(System.out::println);
-
-        // get average length of strings that start with 'c'
-        OptionalDouble averageLengthOfStringsStartingWithC = strings.stream()
-                .filter(s -> s.startsWith("c")) // Stream<String>
-                .mapToInt(String::length)
-                .average();
-        averageLengthOfStringsStartingWithC.ifPresent(System.out::println);
-
-        // count the number of characters used (including duplicates)
-        long numCharactersIncludingDuplicates = strings.stream()
-                .mapToInt(String::length)
-                .sum();
-        System.out.println("numCharactersIncludingDuplicates = " + numCharactersIncludingDuplicates);
-
         // print each distinct string
         strings.stream()
                 .distinct()
@@ -175,6 +125,12 @@ public class StreamDemos {
 
         // print number of distinct strings
         System.out.println("number of distinct strings: " + strings.stream().distinct().count());
+
+        // count strings starting with 'c'
+        long numStartingWithC = strings.stream() // Stream<String>
+                .filter(s -> s.startsWith("c"))  // Stream<String>
+                .count(); // long
+        System.out.println("numStartingWithC = " + numStartingWithC);
 
         // print in uppercase each string starting with 'c'
         strings.stream()
@@ -187,12 +143,13 @@ public class StreamDemos {
                 .sorted(Comparator.comparing(String::length).thenComparing(Comparator.naturalOrder()))
                 .forEach(System.out::println);
 
-        // print any string of length 6. if there are multiple ones, print any;
-        // if there are none, print nothing
-        strings.stream()
-                .filter(s -> s.length() == 6) // Stream<String>
-                .findAny()
-                .ifPresent(System.out::println);
+        // get sorted list of distinct strings with length <= 6
+        List<String> shortDistinctSortedStrings = strings.stream()
+                .filter(s -> s.length() <= 6)
+                .distinct()
+                .sorted()
+                .toList();
+        System.out.println("shortDistinctSortedStrings = " + shortDistinctSortedStrings);
 
         // get sorted list of distinct first characters of the strings
         List<Character> firstCharacters = strings.stream()
@@ -201,9 +158,54 @@ public class StreamDemos {
                 .distinct() // Stream<Character>, but without duplicates
                 .sorted() // Stream<Character>, but now sorted
                 .toList(); // List<Character>
-        firstCharacters.forEach(System.out::println);
+        System.out.println("firstCharacters = " + firstCharacters);
 
-        // group the strings into lists by their lengths: have one List of Strings of length 0, another List of Strings of length 6, etc.
+        // find any longest string; print if present
+        Optional<String> longestString = strings.stream() // Stream<String>
+                .max(Comparator.comparing(String::length)); // Optional<String>
+        longestString.ifPresent(System.out::println); // will print the max if there is one, otherwise does nothing
+
+        // print any longest string, if present
+        strings.stream()
+                .max(Comparator.comparing(String::length))
+                .ifPresent(System.out::println);
+
+        // print any string of length 6. if there are multiple ones, print any;
+        // if there are none, print nothing
+        strings.stream()
+                .filter(s -> s.length() == 6) // Stream<String>
+                .findAny()
+                .ifPresent(System.out::println);
+
+        // find any longest string starting with 'c'
+        Optional<String> longestStringStartingWithC = strings.stream() // Stream<String>
+                .filter(s -> s.startsWith("c")) // Stream<String>
+                .max(Comparator.comparing(String::length));
+        System.out.println(longestStringStartingWithC.orElse("no longest string starting with 'c' available"));
+
+        // get sum of lengths of all strings
+        long sumOfLengths = strings.stream()
+                .mapToInt(String::length)
+                .sum();
+        System.out.println("sumOfLengths = " + sumOfLengths);
+
+        // find length of the longest string
+        OptionalInt lengthOfLongestString = strings.stream() // Stream<String>
+                // .map(String::length) // Stream<Integer>, but we want to be able to call no-arg max method
+                .mapToInt(String::length) // IntStream
+                .max();
+        System.out.println("lengthOfLongestString = " + lengthOfLongestString.orElseThrow());
+
+        // get average length of strings that start with 'c'
+        OptionalDouble averageLengthOfStringsStartingWithC = strings.stream()
+                .filter(s -> s.startsWith("c")) // Stream<String>
+                .mapToInt(String::length)
+                .average();
+        averageLengthOfStringsStartingWithC.ifPresent(System.out::println);
+
+        // group the strings into lists by their lengths:
+        // have one List of Strings of length 0,
+        // another List of Strings of length 6, etc.
         Map<Integer, List<String>> map1 = strings.stream()
                 .collect(Collectors.groupingBy(String::length));
         map1.forEach((len, wordList) -> System.out.println(len + ": " + wordList));
