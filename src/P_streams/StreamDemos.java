@@ -83,6 +83,7 @@ Terminal operations of all streams:
 - reduce(initial, binaryOperator)
 - reduce(binaryOperator) [returns an optional]
 - findAny() [returns an optional]
+- toArray()
 
 Terminal operations specific to Stream<T>:
 - toList()
@@ -98,10 +99,10 @@ Terminal operations specific to IntStream, DoubleStream, and LongStream:
 
 The collect method takes a Collector specifying how the elements of the stream should be collected.
 To easily create a Collector, we can use the following methods of the Collectors class:
-- toList() [collect(Collectors.toList()) is equivalent to toList()]
+- toList() [.collect(Collectors.toList()) is equivalent to .toList()]
 - toSet()
 - joining() [concatenates the elements into a String]
-- joining(String delimiter) [like joining(), but places the delimiter between elements]
+- joining(String delimiter) [like joining(), but places delimiter between elements]
 - groupingBy(function) [returns a Map<K, List<T>>, using the function to classify the elements]
 
 Some terminal operations return an Optional (or OptionalInt, OptionalDouble, or OptionalLong).
