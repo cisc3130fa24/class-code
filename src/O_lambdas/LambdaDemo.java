@@ -110,7 +110,9 @@ public class LambdaDemo {
     }
      */
 
-    public static int reduce(int[] arr, int initial, IntBinaryOperator operator) {
+    public static int reduce(int[] arr,
+                             int initial,
+                             IntBinaryOperator operator) {
         int result = initial;
 
         for (int element : arr) {
