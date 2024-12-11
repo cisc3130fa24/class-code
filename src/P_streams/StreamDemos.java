@@ -51,6 +51,7 @@ Creating a Stream<T> from a source:
 - Arrays.stream(T[] array) returns a Stream<T>
 - If coll is a Collection<E>, coll.stream() returns a Stream<E> of the collection's elements
 - If filename is the name of a file, Files.lines(Paths.get(filename)) returns a Stream<String> of all the lines in the file
+- Stream.iterate(initial, unaryOperator)
 
 Creating an IntStream from a source:
 - IntStream.of(int... values)
