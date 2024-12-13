@@ -10,8 +10,8 @@ public class CollectDemo {
     public static void main(String[] args) {
         String[] arr = {"aa", "b", "ccc", "aaa", "baa", "aa"};
 
+        // classify the elements by their first character
         Map<Character, List<String>> map1 = Arrays.stream(arr)
-                .map(String::toUpperCase)
                 .collect(Collectors.groupingBy(s -> s.charAt(0)));
         System.out.println(map1);
 
