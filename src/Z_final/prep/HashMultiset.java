@@ -18,8 +18,7 @@ public class HashMultiset<E> implements Multiset<E> {
 
     @Override
     public void add(E element) {
-        elementCounts.put(element, elementCounts.getOrDefault(element, 0) + 1);
-        size++;
+        add(element, 1);
     }
 
     @Override
@@ -88,6 +87,17 @@ public class HashMultiset<E> implements Multiset<E> {
         }
 
         return count;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("[");
+
+        for (var entry : elementCounts.entrySet()) {
+            sb.append(entry.getKey()).append(" x ").append(entry.getValue());
+        }
+
+        return sb.append("]").toString();
     }
 
     @Override
